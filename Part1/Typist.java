@@ -108,7 +108,7 @@ public class Typist
      */
     public char getSymbol()
     {
-        return ' '; // placeholder - replace with correct implementation
+        return avatar; // placeholder - replace with correct implementation
     }
 
     /**
