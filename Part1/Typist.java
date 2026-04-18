@@ -70,10 +70,11 @@ public class Typist
     {
 		if(burnOutTurnsRemaining>0){
 			--burnOutTurnsRemaining;
+			if(burnOutTurnsRemaining == 0){
+				isBurntOut = false;
+			}	
 		}
-		else{
-			isBurntOut = false;
-		}
+
     }
 
     /**
