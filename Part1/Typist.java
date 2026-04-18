@@ -212,10 +212,11 @@ public class Typist
 
 
 		System.out.println("-- resetToStart test ");
+				a.typeCharacter();
+		a.typeCharacter();
+		a.typeCharacter();
 		a.burnOut(99);
-		a.typeCharacter();
-		a.typeCharacter();
-		a.typeCharacter();
+
 		System.out.println("init progress: "  + a.getProgress());
 		System.out.println("init burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
 		a.resetToStart();
