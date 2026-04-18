@@ -98,7 +98,7 @@ public class Typist
      */
     public String getName()
     {
-        return ""; // placeholder - replace with correct implementation
+        return name;
     }
 
     /**
