@@ -115,7 +115,7 @@ public class Typist
      */
     public int getBurnoutTurnsRemaining()
     {
-        return 0; // placeholder - replace with correct implementation
+        return burnOutTurnsRemaining; // placeholder - replace with correct implementation
     }
 
     /**
