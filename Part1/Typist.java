@@ -48,6 +48,8 @@ public class Typist
 		avatar = typistSymbol;
 		name = typistName;
 		setAccuracy(typistAccuracy);
+		correctAttempts = 0;
+		totalAttempts = 0;
     }
 
 
