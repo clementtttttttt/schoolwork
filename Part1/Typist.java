@@ -26,7 +26,7 @@ public class Typist
 	int progress;
 	boolean isBurntOut;
 	int burnOutTurnsRemaining;
-	float accuracy;
+	double accuracy;
 	
 
 
@@ -55,9 +55,9 @@ public class Typist
      */
     public void burnOut(int turns)
     {
-		if(!burnOut){
+		if(!isBurntOut){
 			burnOutTurnsRemaining = turns;
-			burnOut = true;
+			isBurntOut = true;
 		}
     }
 
@@ -72,7 +72,7 @@ public class Typist
 			--burnOutTurnsRemaining;
 		}
 		else{
-			burnOut = false;
+			isBurntOut = false;
 		}
     }
 
