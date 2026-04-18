@@ -30,6 +30,8 @@ public class Typist
 	int correctAttempts;
 	int totalAttempts;
 	
+	boolean justMistyped;
+	
 
 
     // Constructor of class Typist
@@ -50,6 +52,7 @@ public class Typist
 		setAccuracy(typistAccuracy);
 		correctAttempts = 0;
 		totalAttempts = 0;
+		justMistyped = false;
     }
 
 
@@ -66,6 +69,7 @@ public class Typist
 		if(!isBurntOut){
 			burnOutTurnsRemaining = turns;
 			isBurntOut = true;
+			justMistyped = false;
 		}
     }
 
@@ -165,6 +169,7 @@ public class Typist
 		isBurntOut = false;
 		correctAttempts = 0;
 		totalAttempts = 0;
+		justMistyped = false;
      }
 
     /**
@@ -187,8 +192,13 @@ public class Typist
 			++progress;
 			++correctAttempts;
 			++totalAttempts;
+			justMistyped = false;
 		}
      }
+     
+     public boolean hasJustMistyped(){
+		return justMistyped;
+	 }
 
      /**
       * Moves the typist backwards by a given number of characters (a mistype).
@@ -201,6 +211,8 @@ public class Typist
 		if(amount < 0) return;
 		progress = Math.max(progress - amount,0);
 		++totalAttempts; //can slideBack multiple progresses for only 1 mistype
+     		justMistyped = true;
+
      }
 
     /**
