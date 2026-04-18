@@ -9,6 +9,9 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+ 
+import java.lang.Math;
+ 
 public class Typist
 {
     // Fields of class Typist
@@ -70,7 +73,7 @@ public class Typist
 		}
 		else{
 			burnOut = false;
-		}f
+		}
     }
 
     /**
@@ -179,7 +182,7 @@ public class Typist
      */
     public void setAccuracy(double newAccuracy)
     {
-
+		accuracy = Math.clamp(newAccuracy, 0, 1);
     }
 
     /**
