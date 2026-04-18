@@ -194,5 +194,37 @@ public class Typist
     {
 		avatar = newSymbol;
     }
+    
+    public static void main(String[] in){
+		Typist a = new Typist('a', "", 0.0);
+		System.out.println("progress: "  + a.getProgress());
+		a.slideBack(99);
+		System.out.println("progress: "  + a.getProgress());
+		
+		a.burnOut(1);
+		System.out.println("burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
+		a.recoverFromBurnout();
+		System.out.println("burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
+
+
+		a.burnOut(99);
+		a.typeCharacter();
+		a.typeCharacter();
+		a.typeCharacter();
+		System.out.println("progress: "  + a.getProgress());
+		System.out.println("burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
+		a.resetToStart();
+		System.out.println("progress: "  + a.getProgress());
+		System.out.println("burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
+		
+		a.setAccuracy(99);
+		System.out.println(a.getAccuracy());
+		
+		System.out.println("progress: "  + a.getProgress());
+		a.typeCharacter();
+		System.out.println("progress: "  + a.getProgress());
+
+	
+	}
 
 }
