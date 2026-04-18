@@ -76,6 +76,10 @@ public class TypingRace
      */
     public void startRace()
     {
+		if(seat1Typist == null || seat2Typist == null || seat3Typist == null){
+			System.out.println("one of the typists is null!! cannot continue");
+			return;
+		}
         boolean finished = false;
 
 
