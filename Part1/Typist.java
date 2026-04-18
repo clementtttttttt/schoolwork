@@ -197,32 +197,38 @@ public class Typist
     
     public static void main(String[] in){
 		Typist a = new Typist('a', "", 0.0);
-		System.out.println("progress: "  + a.getProgress());
-		a.slideBack(99);
-		System.out.println("progress: "  + a.getProgress());
 		
+		System.out.println("-- progress below zero test");
+		System.out.println("init progress: "  + a.getProgress());
+		a.slideBack(99);
+		System.out.println("new progress: "  + a.getProgress());
+		
+		System.out.println("-- burnout test");
 		a.burnOut(1);
-		System.out.println("burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
+		System.out.println("init burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
 		a.recoverFromBurnout();
-		System.out.println("burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
+		System.out.println("new burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
 
 
+		System.out.println("-- resetToStart test ");
 		a.burnOut(99);
 		a.typeCharacter();
 		a.typeCharacter();
 		a.typeCharacter();
-		System.out.println("progress: "  + a.getProgress());
-		System.out.println("burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
+		System.out.println("init progress: "  + a.getProgress());
+		System.out.println("init burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
 		a.resetToStart();
-		System.out.println("progress: "  + a.getProgress());
-		System.out.println("burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
+		System.out.println("new progress: "  + a.getProgress());
+		System.out.println("new burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
 		
+		System.out.println("--- setAccuracy clamp test (attempt to set to 99)");
 		a.setAccuracy(99);
 		System.out.println(a.getAccuracy());
 		
-		System.out.println("progress: "  + a.getProgress());
+		System.out.println("--- typeCharacter forward movement test");
+		System.out.println("init progress: "  + a.getProgress());
 		a.typeCharacter();
-		System.out.println("progress: "  + a.getProgress());
+		System.out.println("new progress: "  + a.getProgress());
 
 	
 	}
