@@ -221,26 +221,29 @@ public class TypingRace
      *
      * @param theTypist the typist whose lane to print
      */
-    private void printSeat(Typist theTypist)
-    {
-        int spacesBefore = theTypist.getProgress();
-        int spacesAfter  = passageLength - theTypist.getProgress();
+     private void printSeat(Typist theTypist)
+     {
+         int spacesBefore = theTypist.getProgress();
+         int spacesAfter  = passageLength - theTypist.getProgress();
 
-        System.out.print('|');
-        multiplePrint(' ', spacesBefore);
+         System.out.print('|');
+         multiplePrint(' ', spacesBefore);
 
-        // Always show the typist's symbol so they can be identified on screen.
-        // Append ~ when burnt out so the state is visible without hiding identity.
-        System.out.print(theTypist.getSymbol());
-        if (theTypist.isBurntOut())
-        {
-            System.out.print('~');
-            spacesAfter--; // symbol + ~ together take two characters
-        }
+         // Always show the typist's symbol so they can be identified on screen.
+         // Append ~ when burnt out so the state is visible without hiding identity.
+         System.out.print(theTypist.getSymbol());
+         if (theTypist.isBurntOut())
+         {
+             System.out.print('~');
+             spacesAfter--; // symbol + ~ together take two characters
+         }
 
-        multiplePrint(' ', spacesAfter);
-        System.out.print('|');
-        System.out.print(' ');
+         // Ensure spacesAfter never goes below 0 to prevent display errors
+         spacesAfter = Math.max(spacesAfter, 0);
+         
+         multiplePrint(' ', spacesAfter);
+         System.out.print('|');
+         System.out.print(' ');
 
         // Print name and accuracy
         if (theTypist.isBurntOut())
