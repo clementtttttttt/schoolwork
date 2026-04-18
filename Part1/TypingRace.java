@@ -152,7 +152,10 @@ public class TypingRace
             theTypist.typeCharacter();
         }
 		else{
-            theTypist.slideBack(SLIDE_BACK_AMOUNT);
+			int slideBackAmount = SLIDE_BACK_AMOUNT;
+			
+			if(Math.random() > 0.2) slideBackAmount = 0;
+            theTypist.slideBack(slideBackAmount);
         }
 
         // Burnout check — pushing too hard increases burnout risk
