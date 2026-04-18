@@ -152,7 +152,7 @@ public class Typist
      */
     public boolean isBurntOut()
     {
-        return false; // placeholder - replace with correct implementation
+        return isBurntOut;
     }
 
     /**
