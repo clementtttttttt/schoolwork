@@ -70,7 +70,7 @@ public class Typist
 		}
 		else{
 			burnOut = false;
-		}
+		}f
     }
 
     /**
@@ -153,7 +153,9 @@ public class Typist
      */
     public void typeCharacter()
     {
-
+		if(!burnOut){
+			++progress;
+		}
     }
 
     /**
