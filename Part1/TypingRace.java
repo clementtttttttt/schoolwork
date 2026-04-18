@@ -237,6 +237,10 @@ public class TypingRace
              System.out.print('~');
              spacesAfter--; // symbol + ~ together take two characters
          }
+         else if(theTypist.hasJustMistyped()){
+			 System.out.print(" [<]");
+			 spacesAfter -= 4;
+		 }
 
          // Ensure spacesAfter never goes below 0 to prevent display errors
          spacesAfter = Math.max(spacesAfter, 0);
