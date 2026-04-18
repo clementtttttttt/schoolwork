@@ -52,8 +52,9 @@ public class Typist
      */
     public void burnOut(int turns)
     {
-		if(burnOutTurnsRemaining >= 0){
+		if(!burnOut){
 			burnOutTurnsRemaining = turns;
+			burnOut = true;
 		}
     }
 
@@ -127,8 +128,10 @@ public class Typist
      * Progress returns to zero, burnout is cleared entirely.
      */
     public void resetToStart()
-    {
-
+    {	
+		progress = 0;
+		burnOutTurnsRemaining = 0;
+		burnOut = false;
     }
 
     /**
