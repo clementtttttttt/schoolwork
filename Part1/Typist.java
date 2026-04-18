@@ -137,7 +137,7 @@ public class Typist
     {	
 		progress = 0;
 		burnOutTurnsRemaining = 0;
-		burnOut = false;
+		isBurntOut = false;
     }
 
     /**
@@ -156,7 +156,7 @@ public class Typist
      */
     public void typeCharacter()
     {
-		if(!burnOut){
+		if(!isBurntOut){
 			++progress;
 		}
     }
@@ -192,7 +192,7 @@ public class Typist
      */
     public void setSymbol(char newSymbol)
     {
-
+		avatar = newSymbol;
     }
 
 }
