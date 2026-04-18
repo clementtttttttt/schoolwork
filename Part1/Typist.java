@@ -198,7 +198,7 @@ public class Typist
      {
 		if(amount < 0) return;
 		progress = Math.max(progress - amount,0);
-		totalAttempts += amount;
+		++totalAttempts; //can slideBack multiple progresses for only 1 mistype
      }
 
     /**
