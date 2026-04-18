@@ -105,7 +105,19 @@ public class TypingRace
             } catch (Exception e) {}
         }
 
-        // TODO (Task 2a): Print the winner's name here
+        // Print the winner's name and measured accuracy
+        if (raceFinishedBy(seat1Typist))
+        {
+            System.out.println("WINNER: " + seat1Typist.getName() + " (Measured Accuracy: " + seat1Typist.getMeasuredAccuracy() + ")");
+        }
+        else if (raceFinishedBy(seat2Typist))
+        {
+            System.out.println("WINNER: " + seat2Typist.getName() + " (Measured Accuracy: " + seat2Typist.getMeasuredAccuracy() + ")");
+        }
+        else if (raceFinishedBy(seat3Typist))
+        {
+            System.out.println("WINNER: " + seat3Typist.getName() + " (Measured Accuracy: " + seat3Typist.getMeasuredAccuracy() + ")");
+        }
     }
 
     /**
@@ -258,4 +270,13 @@ public class TypingRace
             i = i + 1;
         }
     }
+    
+    public static void main(String[] args) {
+		TypingRace race = new TypingRace(40);
+		race.addTypist(new Typist('①', "TURBOFINGERS", 0.85), 1);
+		race.addTypist(new Typist('②', "QWERTY_QUEEN",  0.60), 2);
+		race.addTypist(new Typist('③', "HUNT_N_PECK",   0.30), 3);
+		race.startRace();
+	}
+    
 }

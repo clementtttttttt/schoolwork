@@ -27,6 +27,8 @@ public class Typist
 	boolean isBurntOut;
 	int burnOutTurnsRemaining;
 	double accuracy;
+	int correctAttempts;
+	int totalAttempts;
 	
 
 
@@ -123,27 +125,45 @@ public class Typist
         return avatar; // placeholder - replace with correct implementation
     }
 
-    /**
-     * Returns the number of turns of burnout remaining.
-     * Returns 0 if the typist is not currently burnt out.
-     *
-     * @return burnout turns remaining as a non-negative integer
-     */
-    public int getBurnoutTurnsRemaining()
-    {
-        return burnOutTurnsRemaining; // placeholder - replace with correct implementation
-    }
+     /**
+      * Returns the number of turns of burnout remaining.
+      * Returns 0 if the typist is not currently burnt out.
+      *
+      * @return burnout turns remaining as a non-negative integer
+      */
+     public int getBurnoutTurnsRemaining()
+     {
+         return burnOutTurnsRemaining; // placeholder - replace with correct implementation
+     }
+
+     /**
+      * Returns the measured accuracy of the typist during the race.
+      * Measured accuracy is calculated as correct attempts divided by total attempts.
+      * Returns 0.0 if no attempts have been made.
+      *
+      * @return measured accuracy as a double between 0.0 and 1.0
+      */
+     public double getMeasuredAccuracy()
+     {
+         if (totalAttempts == 0)
+         {
+             return 0.0;
+         }
+         return (double) correctAttempts / totalAttempts;
+     }
 
     /**
      * Resets the typist to their initial state, ready for a new race.
      * Progress returns to zero, burnout is cleared entirely.
      */
-    public void resetToStart()
-    {	
+     public void resetToStart()
+     {	
 		progress = 0;
 		burnOutTurnsRemaining = 0;
 		isBurntOut = false;
-    }
+		correctAttempts = 0;
+		totalAttempts = 0;
+     }
 
     /**
      * Returns true if this typist is currently burnt out, false otherwise.
@@ -155,29 +175,31 @@ public class Typist
         return isBurntOut;
     }
 
-    /**
-     * Advances the typist forward by one character along the passage.
-     * Should only be called when the typist is not burnt out.
-     */
-    public void typeCharacter()
-    {
+     /**
+      * Advances the typist forward by one character along the passage.
+      * Should only be called when the typist is not burnt out.
+      */
+     public void typeCharacter()
+     {
 		if(!isBurntOut){
 			++progress;
+			++correctAttempts;
+			++totalAttempts;
 		}
-    }
+     }
 
-    /**
-     * Moves the typist backwards by a given number of characters (a mistype).
-     * Progress cannot go below zero — the typist cannot slide off the start.
-     *
-     * @param amount the number of characters to slide back (must be positive)
-     */
-    public void slideBack(int amount)
-    {
+     /**
+      * Moves the typist backwards by a given number of characters (a mistype).
+      * Progress cannot go below zero — the typist cannot slide off the start.
+      *
+      * @param amount the number of characters to slide back (must be positive)
+      */
+     public void slideBack(int amount)
+     {
 		if(amount < 0) return;
 		progress = Math.max(progress - amount,0);
-		
-    }
+		totalAttempts += amount;
+     }
 
     /**
      * Sets the accuracy rating of the typist.
