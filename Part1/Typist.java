@@ -42,6 +42,10 @@ public class Typist
     public Typist(char typistSymbol, String typistName, double typistAccuracy)
     {
 
+
+		avatar = typistSymbol;
+		name = typistName;
+		setAccuracy(typistAccuracy);
     }
 
 
