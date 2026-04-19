@@ -237,7 +237,64 @@ public class RaceManager extends JFrame
      */
     private void handleConfigureTypist()
     {
-        System.out.println("Configure Typist button clicked");
+        JDialog configDialog = new JDialog(this, "Configure Typist", true);
+        configDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        configDialog.setLocationRelativeTo(this);
+        configDialog.setResizable(false);
+
+        // Create main panel for dialog with padding
+        JPanel dialogPanel = new JPanel();
+        dialogPanel.setLayout(new BoxLayout(dialogPanel, BoxLayout.Y_AXIS));
+        dialogPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        // Typing Style Selection Section
+        JPanel stylePanel = new JPanel();
+        stylePanel.setLayout(new BoxLayout(stylePanel, BoxLayout.X_AXIS));
+        stylePanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+
+        JLabel styleLabel = new JLabel("Typing Style:");
+        styleLabel.setPreferredSize(new Dimension(120, 25));
+
+        JComboBox<TypingStyle> styleSelector = new JComboBox<>(TypingStyle.values());
+        styleSelector.setPreferredSize(new Dimension(200, 25));
+
+        stylePanel.add(styleLabel);
+        stylePanel.add(Box.createHorizontalStrut(10));
+        stylePanel.add(styleSelector);
+        stylePanel.add(Box.createHorizontalGlue());
+
+        dialogPanel.add(stylePanel);
+        dialogPanel.add(Box.createVerticalStrut(15));
+
+        // Action Buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+
+        JButton okButton = new JButton("OK");
+        JButton cancelButton = new JButton("Cancel");
+
+        okButton.setPreferredSize(new Dimension(100, 35));
+        cancelButton.setPreferredSize(new Dimension(100, 35));
+
+        okButton.addActionListener(e -> {
+            TypingStyle selectedStyle = (TypingStyle) styleSelector.getSelectedItem();
+            System.out.println("Selected Typing Style: " + selectedStyle);
+            configDialog.dispose();
+        });
+
+        cancelButton.addActionListener(e -> configDialog.dispose());
+
+        buttonPanel.add(okButton);
+        buttonPanel.add(Box.createHorizontalStrut(10));
+        buttonPanel.add(cancelButton);
+        buttonPanel.add(Box.createHorizontalGlue());
+
+        dialogPanel.add(buttonPanel);
+
+        configDialog.add(dialogPanel);
+        configDialog.pack();
+        configDialog.setVisible(true);
     }
 
     /**
