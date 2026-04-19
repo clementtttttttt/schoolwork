@@ -127,7 +127,7 @@ public class RaceManager extends JFrame
         JLabel label = new JLabel("Number of Typists:");
         label.setPreferredSize(new Dimension(120, 25));
 
-        SpinnerModel spinnerModel = new SpinnerNumberModel(3, 1, 10, 1);
+        SpinnerModel spinnerModel = new SpinnerNumberModel(3, 2, 6, 1);
         typistCountSpinner = new JSpinner(spinnerModel);
         typistCountSpinner.setPreferredSize(new Dimension(50, 25));
 
