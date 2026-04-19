@@ -109,19 +109,22 @@ public class TypingRace
             } catch (Exception e) {}
         }
 
+		Typist winner = null;
         // Print the winner's name and measured accuracy
         if (raceFinishedBy(seat1Typist))
         {
-            System.out.println("WINNER: " + seat1Typist.getName() + " (Measured Accuracy: " + seat1Typist.getMeasuredAccuracy() + ")");
+			winner = seat1Typist;
         }
         else if (raceFinishedBy(seat2Typist))
         {
-            System.out.println("WINNER: " + seat2Typist.getName() + " (Measured Accuracy: " + seat2Typist.getMeasuredAccuracy() + ")");
+			winner = seat2Typist;
         }
         else if (raceFinishedBy(seat3Typist))
         {
-            System.out.println("WINNER: " + seat3Typist.getName() + " (Measured Accuracy: " + seat3Typist.getMeasuredAccuracy() + ")");
+			winner = seat3Typist;
         }
+        
+        System.out.println("WINNER: " + winner.getName() + " (Measured Accuracy: " + winner.getMeasuredAccuracy() + ")");
     }
 
     /**
