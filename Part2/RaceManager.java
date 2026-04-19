@@ -137,6 +137,13 @@ public class RaceManager extends JFrame
         panel.add(Box.createHorizontalGlue());
 
         mPanel.add(panel);
+        mPanel.add(Box.createVerticalStrut(10));
+
+        JButton configureTypistButton = new JButton("Configure Typists");
+        configureTypistButton.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        configureTypistButton.addActionListener(e -> handleConfigureTypist());
+        mPanel.add(configureTypistButton);
+
         return mPanel;
     }
 
@@ -223,6 +230,14 @@ public class RaceManager extends JFrame
     private void handleCancel()
     {
         System.exit(0);
+    }
+
+    /**
+     * Handles the configure typist button action.
+     */
+    private void handleConfigureTypist()
+    {
+        System.out.println("Configure Typist button clicked");
     }
 
     /**
