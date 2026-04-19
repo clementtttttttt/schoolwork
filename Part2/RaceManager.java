@@ -13,6 +13,7 @@ public class RaceManager extends JFrame
     private JCheckBox autocorrectCheckbox;
     private JCheckBox caffeineCheckbox;
     private JCheckBox nightShiftCheckbox;
+    private JTextArea customPassageCont;
 
     /**
      * Constructor for RaceManager.
@@ -34,6 +35,7 @@ public class RaceManager extends JFrame
         JPanel passagePanel = createPassagePanel();
         mainPanel.add(passagePanel);
         mainPanel.add(Box.createVerticalStrut(15));
+       
 
         // Typist Count Section
         JPanel typistPanel = createTypistPanel();
@@ -62,9 +64,14 @@ public class RaceManager extends JFrame
      */
     private JPanel createPassagePanel()
     {
+        JPanel mPanel = new JPanel();
+        mPanel.setLayout(new BoxLayout(mPanel, BoxLayout.Y_AXIS));
+        mPanel.setBorder(BorderFactory.createTitledBorder("Passage Selection"));
+        mPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.setBorder(BorderFactory.createTitledBorder("Passage Selection"));
+        panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
         JLabel label = new JLabel("Select Passage:");
         label.setPreferredSize(new Dimension(120, 25));
@@ -83,7 +90,22 @@ public class RaceManager extends JFrame
         panel.add(passageSelector);
         panel.add(Box.createHorizontalGlue());
 
-        return panel;
+        mPanel.add(panel);
+        
+        JLabel taLabel = new JLabel("Input custom passage below", SwingConstants.LEFT);
+        taLabel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        mPanel.add(Box.createVerticalStrut(10));
+        mPanel.add(taLabel);
+        
+        customPassageCont = new JTextArea(5, 30);
+        customPassageCont.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        customPassageCont.setLineWrap(true);
+        customPassageCont.setWrapStyleWord(true);
+        JScrollPane scrollPane = new JScrollPane(customPassageCont);
+        scrollPane.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        mPanel.add(scrollPane);
+
+        return mPanel;
     }
 
     /**
@@ -93,9 +115,14 @@ public class RaceManager extends JFrame
      */
     private JPanel createTypistPanel()
     {
+        JPanel mPanel = new JPanel();
+        mPanel.setLayout(new BoxLayout(mPanel, BoxLayout.Y_AXIS));
+        mPanel.setBorder(BorderFactory.createTitledBorder("Typist Configuration"));
+        mPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.setBorder(BorderFactory.createTitledBorder("Typist Configuration"));
+        panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
         JLabel label = new JLabel("Number of Typists:");
         label.setPreferredSize(new Dimension(120, 25));
@@ -109,7 +136,8 @@ public class RaceManager extends JFrame
         panel.add(typistCountSpinner);
         panel.add(Box.createHorizontalGlue());
 
-        return panel;
+        mPanel.add(panel);
+        return mPanel;
     }
 
     /**
@@ -122,14 +150,15 @@ public class RaceManager extends JFrame
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createTitledBorder("Difficulty"));
+        panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
         autocorrectCheckbox = new JCheckBox("Autocorrect");
         caffeineCheckbox = new JCheckBox("Caffeine Mode");
         nightShiftCheckbox = new JCheckBox("Night Shift");
 
-        autocorrectCheckbox.setPreferredSize(new Dimension(150, 25));
-        caffeineCheckbox.setPreferredSize(new Dimension(150, 25));
-        nightShiftCheckbox.setPreferredSize(new Dimension(150, 25));
+        autocorrectCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        caffeineCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        nightShiftCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
         panel.add(autocorrectCheckbox);
         panel.add(Box.createVerticalStrut(8));
@@ -150,6 +179,7 @@ public class RaceManager extends JFrame
     {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
         JButton startButton = new JButton("Start Race");
         JButton cancelButton = new JButton("Cancel");
@@ -160,10 +190,10 @@ public class RaceManager extends JFrame
         startButton.setPreferredSize(new Dimension(120, 35));
         cancelButton.setPreferredSize(new Dimension(120, 35));
 
-        panel.add(Box.createHorizontalGlue());
         panel.add(startButton);
         panel.add(Box.createHorizontalStrut(10));
         panel.add(cancelButton);
+        panel.add(Box.createHorizontalGlue());
 
         return panel;
     }

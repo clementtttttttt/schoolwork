@@ -14,11 +14,11 @@ TypingRaceSimulator/
 
 ### How to compile & run
 
-run compileStartText.sh in the root folder
+run compilePart1.sh in the root folder
 
 ## Part 2 — GUI Simulation
 
-To be implemented as part of the coursework. Place all GUI-related source files in this folder. The graphical version is started by calling `startRaceGUI()`.
+run compilePart2.sh in the root folder
 
 ## Dependencies
 
