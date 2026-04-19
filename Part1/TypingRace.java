@@ -124,7 +124,7 @@ public class TypingRace
 			winner = seat3Typist;
         }
         
-        System.out.println("WINNER: " + winner.getName() + " (Measured Accuracy: " + winner.getMeasuredAccuracy() + ")");
+        System.out.println("And the winner is... " + winner.getName() + "! \nFinal accuracy: " + winner.getMeasuredAccuracy() + " (" + ((winner.getMeasuredAccuracy() >= winner.getAccuracy())? "improved":"deterioated") + " from " + winner.getAccuracy() + ")");
     }
 
     /**
