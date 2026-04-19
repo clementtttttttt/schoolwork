@@ -76,16 +76,16 @@ public class TypingRace
      */
     public void startRace()
     {
-		if(seat1Typist == null || seat2Typist == null || seat3Typist == null){
-			System.out.println("one of the typists is null!! cannot continue");
-			return;
-		}
+        if (seat1Typist == null || seat2Typist == null || seat3Typist == null)
+        {
+            System.out.println("one of the typists is null!! cannot continue");
+            return;
+        }
         boolean finished = false;
-
 
         seat1Typist.resetToStart();
         seat2Typist.resetToStart();
-		seat3Typist.resetToStart();
+        seat3Typist.resetToStart();
 
         while (!finished)
         {
@@ -109,22 +109,22 @@ public class TypingRace
             } catch (Exception e) {}
         }
 
-		Typist winner = null;
+        Typist winner = null;
         // Print the winner's name and measured accuracy
         if (raceFinishedBy(seat1Typist))
         {
-			winner = seat1Typist;
+            winner = seat1Typist;
         }
         else if (raceFinishedBy(seat2Typist))
         {
-			winner = seat2Typist;
+            winner = seat2Typist;
         }
         else if (raceFinishedBy(seat3Typist))
         {
-			winner = seat3Typist;
+            winner = seat3Typist;
         }
-        
-        System.out.println("And the winner is... " + winner.getName() + "! \nFinal accuracy: " + winner.getMeasuredAccuracy() + " (" + ((winner.getMeasuredAccuracy() >= winner.getAccuracy())? "improved":"deterioated") + " from " + winner.getAccuracy() + ")");
+
+        System.out.println("And the winner is... " + winner.getName() + "! \nFinal accuracy: " + winner.getMeasuredAccuracy() + " (" + ((winner.getMeasuredAccuracy() >= winner.getAccuracy()) ? "improved" : "deterioated") + " from " + winner.getAccuracy() + ")");
     }
 
     /**
@@ -154,16 +154,20 @@ public class TypingRace
         {
             theTypist.typeCharacter();
         }
-		else{
-			int slideBackAmount = SLIDE_BACK_AMOUNT;
-			
-			if(Math.random() > 0.2) slideBackAmount = 0;
+        else
+        {
+            int slideBackAmount = SLIDE_BACK_AMOUNT;
+
+            if (Math.random() > 0.2)
+            {
+                slideBackAmount = 0;
+            }
             theTypist.slideBack(slideBackAmount);
         }
 
         // Burnout check — pushing too hard increases burnout risk
         // (probability scales with accuracy cubed, limited to 0.3
-        if (Math.random() < 0.3 * theTypist.getAccuracy()* theTypist.getAccuracy() * theTypist.getAccuracy())
+        if (Math.random() < 0.3 * theTypist.getAccuracy() * theTypist.getAccuracy() * theTypist.getAccuracy())
         {
             theTypist.burnOut(BURNOUT_DURATION);
         }
@@ -227,33 +231,34 @@ public class TypingRace
      *
      * @param theTypist the typist whose lane to print
      */
-     private void printSeat(Typist theTypist)
-     {
-         int spacesBefore = theTypist.getProgress();
-         int spacesAfter  = passageLength - theTypist.getProgress();
+    private void printSeat(Typist theTypist)
+    {
+        int spacesBefore = theTypist.getProgress();
+        int spacesAfter = passageLength - theTypist.getProgress();
 
-         System.out.print('|');
-         multiplePrint(' ', spacesBefore);
+        System.out.print('|');
+        multiplePrint(' ', spacesBefore);
 
-         // Always show the typist's symbol so they can be identified on screen.
-         // Append ~ when burnt out so the state is visible without hiding identity.
-         System.out.print(theTypist.getSymbol());
-         if (theTypist.isBurntOut())
-         {
-             System.out.print('~');
-             spacesAfter--; // symbol + ~ together take two characters
-         }
-         else if(theTypist.hasJustMistyped()){
-			 System.out.print(" [<]");
-			 spacesAfter -= 4;
-		 }
+        // Always show the typist's symbol so they can be identified on screen.
+        // Append ~ when burnt out so the state is visible without hiding identity.
+        System.out.print(theTypist.getSymbol());
+        if (theTypist.isBurntOut())
+        {
+            System.out.print('~');
+            spacesAfter--; // symbol + ~ together take two characters
+        }
+        else if (theTypist.hasJustMistyped())
+        {
+            System.out.print(" [<]");
+            spacesAfter -= 4;
+        }
 
-         // Ensure spacesAfter never goes below 0 to prevent display errors
-         spacesAfter = Math.max(spacesAfter, 0);
-         
-         multiplePrint(' ', spacesAfter);
-         System.out.print('|');
-         System.out.print(' ');
+        // Ensure spacesAfter never goes below 0 to prevent display errors
+        spacesAfter = Math.max(spacesAfter, 0);
+
+        multiplePrint(' ', spacesAfter);
+        System.out.print('|');
+        System.out.print(' ');
 
         // Print name and accuracy
         if (theTypist.isBurntOut())
@@ -262,11 +267,12 @@ public class TypingRace
                 + " (Accuracy: " + theTypist.getAccuracy() + ")"
                 + " BURNT OUT (" + theTypist.getBurnoutTurnsRemaining() + " turns)");
         }
-        else if(theTypist.hasJustMistyped()){
-			System.out.print(theTypist.getName()
+        else if (theTypist.hasJustMistyped())
+        {
+            System.out.print(theTypist.getName()
                 + " (Accuracy: " + theTypist.getAccuracy() + ")"
                 + " <- just mistyped");
-		}
+        }
         else
         {
             System.out.print(theTypist.getName()
@@ -289,13 +295,13 @@ public class TypingRace
             i = i + 1;
         }
     }
-    
-    public static void main(String[] args) {
-		TypingRace race = new TypingRace(40);
-		race.addTypist(new Typist('①', "TURBOFINGERS", 0.85), 1);
-		race.addTypist(new Typist('②', "QWERTY_QUEEN",  0.60), 2);
-		race.addTypist(new Typist('③', "HUNT_N_PECK",   0.30), 3);
-		race.startRace();
-	}
-    
+
+    public static void main(String[] args)
+    {
+        TypingRace race = new TypingRace(40);
+        race.addTypist(new Typist('①', "TURBOFINGERS", 0.85), 1);
+        race.addTypist(new Typist('②', "QWERTY_QUEEN", 0.60), 2);
+        race.addTypist(new Typist('③', "HUNT_N_PECK", 0.30), 3);
+        race.startRace();
+    }
 }

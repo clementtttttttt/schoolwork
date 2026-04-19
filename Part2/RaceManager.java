@@ -35,7 +35,6 @@ public class RaceManager extends JFrame
         JPanel passagePanel = createPassagePanel();
         mainPanel.add(passagePanel);
         mainPanel.add(Box.createVerticalStrut(15));
-       
 
         // Typist Count Section
         JPanel typistPanel = createTypistPanel();

@@ -9,9 +9,9 @@
  * @author (your name)
  * @version (a version number or a date)
  */
- 
+
 import java.lang.Math;
- 
+
 public class Typist
 {
     // Fields of class Typist
@@ -21,18 +21,16 @@ public class Typist
     // A third tracks HOW MANY turns of burnout remain (not just whether they are burnt out).
     // The remaining three should be fairly obvious.
 
-	String name;
-	char avatar;
-	int progress;
-	boolean isBurntOut;
-	int burnOutTurnsRemaining;
-	double accuracy;
-	int correctAttempts;
-	int totalAttempts;
-	
-	boolean justMistyped;
-	
+    String name;
+    char avatar;
+    int progress;
+    boolean isBurntOut;
+    int burnOutTurnsRemaining;
+    double accuracy;
+    int correctAttempts;
+    int totalAttempts;
 
+    boolean justMistyped;
 
     // Constructor of class Typist
     /**
@@ -45,16 +43,13 @@ public class Typist
      */
     public Typist(char typistSymbol, String typistName, double typistAccuracy)
     {
-
-
-		avatar = typistSymbol;
-		name = typistName;
-		setAccuracy(typistAccuracy);
-		correctAttempts = 0;
-		totalAttempts = 0;
-		justMistyped = false;
+        avatar = typistSymbol;
+        name = typistName;
+        setAccuracy(typistAccuracy);
+        correctAttempts = 0;
+        totalAttempts = 0;
+        justMistyped = false;
     }
-
 
     // Methods of class Typist
 
@@ -66,11 +61,12 @@ public class Typist
      */
     public void burnOut(int turns)
     {
-		if(!isBurntOut){
-			burnOutTurnsRemaining = turns;
-			isBurntOut = true;
-			justMistyped = false;
-		}
+        if (!isBurntOut)
+        {
+            burnOutTurnsRemaining = turns;
+            isBurntOut = true;
+            justMistyped = false;
+        }
     }
 
     /**
@@ -80,13 +76,14 @@ public class Typist
      */
     public void recoverFromBurnout()
     {
-		if(burnOutTurnsRemaining>0){
-			--burnOutTurnsRemaining;
-			if(burnOutTurnsRemaining == 0){
-				isBurntOut = false;
-			}	
-		}
-
+        if (burnOutTurnsRemaining > 0)
+        {
+            --burnOutTurnsRemaining;
+            if (burnOutTurnsRemaining == 0)
+            {
+                isBurntOut = false;
+            }
+        }
     }
 
     /**
@@ -96,7 +93,7 @@ public class Typist
      */
     public double getAccuracy()
     {
-        return accuracy; 
+        return accuracy;
     }
 
     /**
@@ -128,49 +125,49 @@ public class Typist
      */
     public char getSymbol()
     {
-        return avatar; // placeholder - replace with correct implementation
+        return avatar;
     }
 
-     /**
-      * Returns the number of turns of burnout remaining.
-      * Returns 0 if the typist is not currently burnt out.
-      *
-      * @return burnout turns remaining as a non-negative integer
-      */
-     public int getBurnoutTurnsRemaining()
-     {
-         return burnOutTurnsRemaining; // placeholder - replace with correct implementation
-     }
+    /**
+     * Returns the number of turns of burnout remaining.
+     * Returns 0 if the typist is not currently burnt out.
+     *
+     * @return burnout turns remaining as a non-negative integer
+     */
+    public int getBurnoutTurnsRemaining()
+    {
+        return burnOutTurnsRemaining;
+    }
 
-     /**
-      * Returns the measured accuracy of the typist during the race.
-      * Measured accuracy is calculated as correct attempts divided by total attempts.
-      * Returns 0.0 if no attempts have been made.
-      *
-      * @return measured accuracy as a double between 0.0 and 1.0
-      */
-     public double getMeasuredAccuracy()
-     {
-         if (totalAttempts == 0)
-         {
-             return 0.0;
-         }
-         return (double) correctAttempts / totalAttempts;
-     }
+    /**
+     * Returns the measured accuracy of the typist during the race.
+     * Measured accuracy is calculated as correct attempts divided by total attempts.
+     * Returns 0.0 if no attempts have been made.
+     *
+     * @return measured accuracy as a double between 0.0 and 1.0
+     */
+    public double getMeasuredAccuracy()
+    {
+        if (totalAttempts == 0)
+        {
+            return 0.0;
+        }
+        return (double) correctAttempts / totalAttempts;
+    }
 
     /**
      * Resets the typist to their initial state, ready for a new race.
      * Progress returns to zero, burnout is cleared entirely.
      */
-     public void resetToStart()
-     {	
-		progress = 0;
-		burnOutTurnsRemaining = 0;
-		isBurntOut = false;
-		correctAttempts = 0;
-		totalAttempts = 0;
-		justMistyped = false;
-     }
+    public void resetToStart()
+    {
+        progress = 0;
+        burnOutTurnsRemaining = 0;
+        isBurntOut = false;
+        correctAttempts = 0;
+        totalAttempts = 0;
+        justMistyped = false;
+    }
 
     /**
      * Returns true if this typist is currently burnt out, false otherwise.
@@ -182,38 +179,42 @@ public class Typist
         return isBurntOut;
     }
 
-     /**
-      * Advances the typist forward by one character along the passage.
-      * Should only be called when the typist is not burnt out.
-      */
-     public void typeCharacter()
-     {
-		if(!isBurntOut){
-			++progress;
-			++correctAttempts;
-			++totalAttempts;
-			justMistyped = false;
-		}
-     }
-     
-     public boolean hasJustMistyped(){
-		return justMistyped;
-	 }
+    /**
+     * Advances the typist forward by one character along the passage.
+     * Should only be called when the typist is not burnt out.
+     */
+    public void typeCharacter()
+    {
+        if (!isBurntOut)
+        {
+            ++progress;
+            ++correctAttempts;
+            ++totalAttempts;
+            justMistyped = false;
+        }
+    }
 
-     /**
-      * Moves the typist backwards by a given number of characters (a mistype).
-      * Progress cannot go below zero — the typist cannot slide off the start.
-      *
-      * @param amount the number of characters to slide back (must be positive)
-      */
-     public void slideBack(int amount)
-     {
-		if(amount < 0) return;
-		progress = Math.max(progress - amount,0);
-		++totalAttempts; //can slideBack multiple progresses for only 1 mistype
-     		justMistyped = true;
+    public boolean hasJustMistyped()
+    {
+        return justMistyped;
+    }
 
-     }
+    /**
+     * Moves the typist backwards by a given number of characters (a mistype).
+     * Progress cannot go below zero — the typist cannot slide off the start.
+     *
+     * @param amount the number of characters to slide back (must be positive)
+     */
+    public void slideBack(int amount)
+    {
+        if (amount < 0)
+        {
+            return;
+        }
+        progress = Math.max(progress - amount, 0);
+        ++totalAttempts; // can slideBack multiple progresses for only 1 mistype
+        justMistyped = true;
+    }
 
     /**
      * Sets the accuracy rating of the typist.
@@ -223,7 +224,7 @@ public class Typist
      */
     public void setAccuracy(double newAccuracy)
     {
-		accuracy = Math.clamp(newAccuracy, 0, 1);
+        accuracy = Math.clamp(newAccuracy, 0, 1);
     }
 
     /**
@@ -233,46 +234,43 @@ public class Typist
      */
     public void setSymbol(char newSymbol)
     {
-		avatar = newSymbol;
+        avatar = newSymbol;
     }
-    
-    public static void main(String[] in){
-		Typist a = new Typist('a', "", 0.0);
-		
-		System.out.println("-- progress below zero test");
-		System.out.println("init progress: "  + a.getProgress());
-		a.slideBack(99);
-		System.out.println("new progress: "  + a.getProgress());
-		
-		System.out.println("-- burnout test");
-		a.burnOut(1);
-		System.out.println("init burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
-		a.recoverFromBurnout();
-		System.out.println("new burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
 
+    public static void main(String[] in)
+    {
+        Typist a = new Typist('a', "", 0.0);
 
-		System.out.println("-- resetToStart test ");
-				a.typeCharacter();
-		a.typeCharacter();
-		a.typeCharacter();
-		a.burnOut(99);
+        System.out.println("-- progress below zero test");
+        System.out.println("init progress: " + a.getProgress());
+        a.slideBack(99);
+        System.out.println("new progress: " + a.getProgress());
 
-		System.out.println("init progress: "  + a.getProgress());
-		System.out.println("init burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
-		a.resetToStart();
-		System.out.println("new progress: "  + a.getProgress());
-		System.out.println("new burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
-		
-		System.out.println("--- setAccuracy clamp test (attempt to set to 99)");
-		a.setAccuracy(99);
-		System.out.println(a.getAccuracy());
-		
-		System.out.println("--- typeCharacter forward movement test");
-		System.out.println("init progress: "  + a.getProgress());
-		a.typeCharacter();
-		System.out.println("new progress: "  + a.getProgress());
+        System.out.println("-- burnout test");
+        a.burnOut(1);
+        System.out.println("init burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
+        a.recoverFromBurnout();
+        System.out.println("new burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
 
-	
-	}
+        System.out.println("-- resetToStart test ");
+        a.typeCharacter();
+        a.typeCharacter();
+        a.typeCharacter();
+        a.burnOut(99);
 
+        System.out.println("init progress: " + a.getProgress());
+        System.out.println("init burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
+        a.resetToStart();
+        System.out.println("new progress: " + a.getProgress());
+        System.out.println("new burnout: " + a.isBurntOut + " " + a.burnOutTurnsRemaining);
+
+        System.out.println("--- setAccuracy clamp test (attempt to set to 99)");
+        a.setAccuracy(99);
+        System.out.println(a.getAccuracy());
+
+        System.out.println("--- typeCharacter forward movement test");
+        System.out.println("init progress: " + a.getProgress());
+        a.typeCharacter();
+        System.out.println("new progress: " + a.getProgress());
+    }
 }
