@@ -4,21 +4,25 @@
  */
 public enum KeyboardType
 {
-    MECHANICAL("Mechanical"),
-    MEMBRANE("Membrane"),
-    TOUCHSCREEN("Touchscreen"),
-    STENOGRAPHY("Stenography");
+    MECHANICAL("Mechanical", 1, 0),
+    MEMBRANE("Membrane", 0, 0),
+    TOUCHSCREEN("Touchscreen", -1, -1),
+    STENOGRAPHY("Stenography", 2,  -1);
 
     private final String displayName;
+	private int speedBonus, accuracyPenalty;
+
 
     /**
      * Constructor for KeyboardType enum.
      *
      * @param displayName the user-friendly name to display in the UI
      */
-    KeyboardType(String displayName)
+    KeyboardType(String displayName, int sb, int accPenalty)
     {
         this.displayName = displayName;
+		speedBonus = sb;
+		accuracyPenalty = accPenalty;
     }
 
     /**
