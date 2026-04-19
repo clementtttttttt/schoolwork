@@ -25,6 +25,14 @@ public enum KeyboardType
 		accuracyPenalty = accPenalty;
     }
 
+    int getAccuracyPenalty(){
+		return accuracyPenalty;
+	}
+	
+	int getSpeedBonus(){
+		return speedBonus;
+	}
+
     /**
      * Returns the user-friendly name of this keyboard type.
      *
