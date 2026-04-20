@@ -137,6 +137,18 @@ public class ConfigureTypistDialog extends JDialog
 		speedValueLabel.setText(Integer.toString(tb.getTotalSpeedBuff()));
 		burnoutValueLabel.setText(Integer.toString(tb.getTotalBurnOutBuff()));
 	 }
+	 
+	 private void saveTypistsData(){
+		int currentIdx = (Integer)numberSpinner.getValue() - 1; //1-based indexing to 0-based indexing
+		Typist curr = racers[currentIdx];
+		TypistBuffs tb = curr.getTypistBuffs();
+		
+		
+		curr.setSymbol(avatarField.getText().charAt(0));
+		
+		
+	 }	
+		
 
     /**
      * Creates the typist number selection panel for the configuration dialog.
