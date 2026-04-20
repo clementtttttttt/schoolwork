@@ -413,7 +413,7 @@ public class ConfigureTypistDialog extends JDialog
         JPanel burnoutPanel = new JPanel();
         burnoutPanel.setLayout(new BoxLayout(burnoutPanel, BoxLayout.X_AXIS));
         burnoutPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-        JLabel burnoutLabel = new JLabel("Burnout Risk: ");
+        JLabel burnoutLabel = new JLabel("Burnout Risk (negative = more likely): ");
         burnoutValueLabel = new JLabel("");
         burnoutPanel.add(burnoutLabel);
         burnoutPanel.add(burnoutValueLabel);
