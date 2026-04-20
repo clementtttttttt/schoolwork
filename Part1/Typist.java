@@ -156,6 +156,16 @@ public class Typist
     }
 
     /**
+     * Sets the name of the typist.
+     *
+     * @param newName the new name for the typist
+     */
+    public void setName(String newName)
+    {
+        name = newName;
+    }
+
+    /**
      * Returns the character symbol used to represent this typist.
      *
      * @return the typist's symbol as a char

@@ -14,6 +14,7 @@ public class ConfigureTypistDialog extends JDialog
 	
 	private Typist[] racers;
 	JSpinner numberSpinner;
+	JTextField nameField;
 	JTextField avatarField;
 	JComboBox<TypingStyle> styleSelector;
 	JComboBox<KeyboardType> keyboardSelector;
@@ -51,6 +52,11 @@ public class ConfigureTypistDialog extends JDialog
         // Typist Number Selection Section
         JPanel typistNumberPanel = createDialogTypistNumberPanel(maxTypists);
         dialogPanel.add(typistNumberPanel);
+        dialogPanel.add(Box.createVerticalStrut(15));
+
+        // Typist Name Section
+        JPanel namePanel = createDialogNamePanel();
+        dialogPanel.add(namePanel);
         dialogPanel.add(Box.createVerticalStrut(15));
 
         // Typing Style Selection Section
@@ -118,13 +124,14 @@ public class ConfigureTypistDialog extends JDialog
      * Loads params of typists into the config dialog
      *
      */
-     private void loadTypistsData(){
+      private void loadTypistsData(){
 		 
 		int currentIdx = (Integer)numberSpinner.getValue() - 1; //1-based indexing to 0-based indexing
 		Typist curr = racers[currentIdx];
 		TypistBuffs tb = curr.getTypistBuffs();
 		
 		
+		nameField.setText(curr.getName());
 		avatarField.setText(Character.toString(curr.getSymbol()));
 		styleSelector.setSelectedItem(tb.getTypingStyle());
 		keyboardSelector.setSelectedItem(tb.getKeyboardType());
@@ -147,6 +154,7 @@ public class ConfigureTypistDialog extends JDialog
 		TypistBuffs tb = curr.getTypistBuffs();
 		
 		
+		curr.setName(nameField.getText());
 		if (avatarField.getText().length() > 0) {
 			curr.setSymbol(avatarField.getText().charAt(0));
 		}
@@ -215,6 +223,33 @@ public class ConfigureTypistDialog extends JDialog
         panel.add(numberLabel);
         panel.add(Box.createHorizontalStrut(10));
         panel.add(numberSpinner);
+        panel.add(Box.createHorizontalGlue());
+
+        return panel;
+    }
+
+    /**
+     * Creates the typist name input panel for the configuration dialog.
+     *
+     * @return a JPanel containing the typist name text field
+     */
+    private JPanel createDialogNamePanel()
+    {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+
+        JLabel nameLabel = new JLabel("Typist Name:");
+        nameLabel.setPreferredSize(new Dimension(120, 25));
+
+        nameField = new JTextField();
+        nameField.setPreferredSize(new Dimension(200, 25));
+        nameField.setMaximumSize(new Dimension(200, 25));
+
+        panel.add(nameLabel);
+        panel.add(Box.createHorizontalStrut(10));
+        panel.add(nameField);
         panel.add(Box.createHorizontalGlue());
 
         return panel;
