@@ -11,6 +11,7 @@
  */
 
 import java.lang.Math;
+import java.awt.Color;
 
 public class Typist
 {
@@ -29,6 +30,8 @@ public class Typist
     double accuracy;
     int correctAttempts;
     int totalAttempts;
+    
+    Color progressColor;
     
     TypistBuffs buffs;
 
@@ -52,9 +55,20 @@ public class Typist
         totalAttempts = 0;
         justMistyped = false;
         buffs = new TypistBuffs();
+        progressColor = Color.blue;
     }
 
     // Methods of class Typist
+
+    /**
+     * Return progress colour of typist
+     *
+     * @return Color object that represent the progress bar color of the typist
+     */
+    public Color getProgressColour()
+    {
+        return progressColor;
+    }
 
     /**
      * Sets this typist into a burnout state for a given number of turns.

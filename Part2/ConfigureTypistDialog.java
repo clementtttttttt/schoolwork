@@ -17,6 +17,7 @@ public class ConfigureTypistDialog extends JDialog
 	JTextField avatarField;
 	JComboBox<TypingStyle> styleSelector;
 	JComboBox<KeyboardType> keyboardSelector;
+	JButton colourButton;
 	
     /**
      * Constructor for ConfigureTypistDialog.
@@ -115,6 +116,7 @@ public class ConfigureTypistDialog extends JDialog
 		avatarField.setText(Character.toString(curr.getSymbol()));
 		styleSelector.setSelectedItem(curr.getTypistBuffs().getTypingStyle());
 		keyboardSelector.setSelectedItem(curr.getTypistBuffs().getKeyboardType());
+		colourButton.setBackground(curr.getProgressColour());
 	 }
 
     /**
@@ -249,10 +251,11 @@ public class ConfigureTypistDialog extends JDialog
         JLabel colourLabel = new JLabel("Progress Colour:");
         colourLabel.setPreferredSize(new Dimension(120, 25));
 
-        JButton colourButton = new JButton("Select Colour");
+        colourButton = new JButton("Select Colour");
         colourButton.setPreferredSize(new Dimension(150, 25));
+        colourButton.setBackground(Color.blue);
         colourButton.addActionListener(e -> {
-            Color selectedColour = JColorChooser.showDialog(null, "Choose Progress Colour", Color.BLUE);
+            Color selectedColour = JColorChooser.showDialog(null, "Choose Progress Colour", colourButton.getBackground());
             if (selectedColour != null)
             {
                 colourButton.setBackground(selectedColour);
