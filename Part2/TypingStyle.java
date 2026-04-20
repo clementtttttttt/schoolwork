@@ -10,17 +10,17 @@ public enum TypingStyle
     VOICE_TO_TEXT("Voice-to-Text",-1, -2);
 
     private final String displayName;
-	private int speedBonus, accuracyPenalty;
+	private int burnOutBuff, accuracyPenalty;
 
     /**
      * Constructor for TypingStyle enum.
      *
      * @param displayName the user-friendly name to display in the UI
      */
-    TypingStyle(String displayName, int sb, int ap)
+    TypingStyle(String displayName, int bob, int ap)
     {
         this.displayName = displayName;
-        speedBonus = sb;
+        burnOutBuff = bob;
         accuracyPenalty = ap;
     }
     
@@ -28,8 +28,8 @@ public enum TypingStyle
 		return accuracyPenalty;
 	}
 	
-	int getSpeedBonus(){
-		return speedBonus;
+	int getBurnOutBuff(){
+		return burnOutBuff;
 	}
 
     /**
