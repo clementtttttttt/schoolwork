@@ -158,8 +158,37 @@ public class ConfigureTypistDialog extends JDialog
 		tb.setWS(wristSupportCheckbox.isSelected());
 		tb.setED(energyDrinkCheckbox.isSelected());
 		tb.setNC(noiseCancellingCheckbox.isSelected());
-	 }	
-		
+	 }
+	 
+	 /**
+	  * Updates the attribute impacts display based on current GUI selections
+	  * without saving data to the Typist object.
+	  */
+	 private void updateAttributeImpacts(){
+		 // Create temporary buffs based on current GUI selections
+		 TypingStyle selectedStyle = (TypingStyle) styleSelector.getSelectedItem();
+		 KeyboardType selectedKeyboard = (KeyboardType) keyboardSelector.getSelectedItem();
+		 boolean hasWS = wristSupportCheckbox.isSelected();
+		 boolean hasED = energyDrinkCheckbox.isSelected();
+		 boolean hasNC = noiseCancellingCheckbox.isSelected();
+		 
+		 // Calculate accuracy buff
+		 int accuracyBuff = selectedStyle.getAccuracyPenalty() + selectedKeyboard.getAccuracyPenalty();
+		 if (hasNC) {
+			 ++accuracyBuff;
+		 }
+		 
+		 // Calculate speed buff
+		 int speedBuff = selectedKeyboard.getSpeedBonus();
+		 
+		 // Calculate burnout buff
+		 int burnoutBuff = selectedStyle.getBurnOutBuff() + (hasWS ? 1 : 0);
+		 
+		 // Update the labels
+		 accuracyValueLabel.setText(Integer.toString(accuracyBuff));
+		 speedValueLabel.setText(Integer.toString(speedBuff));
+		 burnoutValueLabel.setText(Integer.toString(burnoutBuff));
+	 }
 
     /**
      * Creates the typist number selection panel for the configuration dialog.
@@ -209,6 +238,7 @@ public class ConfigureTypistDialog extends JDialog
           styleSelector = new JComboBox<>(TypingStyle.values());
           styleSelector.setPreferredSize(new Dimension(200, 25));
           styleSelector.setMaximumSize(new Dimension(200, 25));
+          styleSelector.addActionListener(e -> updateAttributeImpacts());
 
           panel.add(styleLabel);
           panel.add(Box.createHorizontalStrut(10));
@@ -236,6 +266,7 @@ public class ConfigureTypistDialog extends JDialog
           keyboardSelector = new JComboBox<>(KeyboardType.values());
           keyboardSelector.setPreferredSize(new Dimension(200, 25));
           keyboardSelector.setMaximumSize(new Dimension(200, 25));
+          keyboardSelector.addActionListener(e -> updateAttributeImpacts());
 
           panel.add(keyboardLabel);
           panel.add(Box.createHorizontalStrut(10));
@@ -332,6 +363,10 @@ public class ConfigureTypistDialog extends JDialog
           wristSupportCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
           energyDrinkCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
           noiseCancellingCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+
+          wristSupportCheckbox.addActionListener(e -> updateAttributeImpacts());
+          energyDrinkCheckbox.addActionListener(e -> updateAttributeImpacts());
+          noiseCancellingCheckbox.addActionListener(e -> updateAttributeImpacts());
 
           panel.add(wristSupportCheckbox);
           panel.add(Box.createVerticalStrut(8));
