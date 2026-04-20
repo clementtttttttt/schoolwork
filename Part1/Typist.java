@@ -51,6 +51,7 @@ public class Typist
         correctAttempts = 0;
         totalAttempts = 0;
         justMistyped = false;
+        buffs = new TypistBuffs();
     }
 
     // Methods of class Typist
