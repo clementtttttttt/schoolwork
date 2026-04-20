@@ -33,7 +33,7 @@ class TypistBuffs{
 	}
 	
 	
-	public boolean isWs(){
+	public boolean isWS(){
 		return hasWS;
 	}
 	public boolean isED(){
