@@ -3,6 +3,12 @@ class TypistBuffs{
 	KeyboardType kt;
 	boolean hasWS, hasED, hasNC;
 	
+	TypistBuffs(){
+		ts = TypingStyle.HUNT_AND_PECK;
+		kt = KeyboardType.MEMBRANE;
+		hasWS = hasED = hasNC = false;
+	}
+	
 	public int getTotalAccuracyBuff(){
 		int ret = ts.getAccuracyPenalty() + kt.getAccuracyPenalty();
 		if(hasNC){
