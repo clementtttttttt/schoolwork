@@ -1,3 +1,2 @@
-javac Part1/*.java
-javac Part2/*.java
-java -cp Part1 -cp Part2 RaceManager
+javac Part1/*.java Part2/*.java
+java -cp Part2:Part1 RaceManager

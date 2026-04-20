@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * ConfigureTypistDialog provides a GUI for configuring individual typist settings.
@@ -185,9 +187,17 @@ public class ConfigureTypistDialog extends JDialog
         JLabel avatarLabel = new JLabel("Avatar:");
         avatarLabel.setPreferredSize(new Dimension(120, 25));
 
-        JTextField avatarField = new JTextField(1);
+        JTextField avatarField = new JTextField(5);
         avatarField.setPreferredSize(new Dimension(50, 25));
         avatarField.setMaximumSize(new Dimension(25, 25));
+		avatarField.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent e){
+				if (avatarField.getText().length() >= 1) // limit textfield to 3 characters
+					e.consume(); 
+
+			}
+		});
+
 
         panel.add(avatarLabel);
         panel.add(Box.createHorizontalStrut(10));

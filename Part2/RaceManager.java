@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
+
 /**
  * RaceManager provides a GUI for configuring and managing typing races.
  * Users can select a passage, configure the number of typists,
@@ -15,12 +16,16 @@ public class RaceManager extends JFrame
     private JCheckBox nightShiftCheckbox;
     private JTextArea customPassageCont;
 
+	private static final int MAX_TYPISTS = 6;
+
     /**
      * Constructor for RaceManager.
      * Initializes and displays the race configuration window.
      */
     public RaceManager()
     {
+		
+		racers = new Typist[MAX_TYPISTS];
         setTitle("Typing Race Manager");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -35,6 +40,7 @@ public class RaceManager extends JFrame
         JPanel passagePanel = createPassagePanel();
         mainPanel.add(passagePanel);
         mainPanel.add(Box.createVerticalStrut(15));
+       
 
         // Typist Count Section
         JPanel typistPanel = createTypistPanel();
@@ -126,7 +132,7 @@ public class RaceManager extends JFrame
         JLabel label = new JLabel("Number of Typists:");
         label.setPreferredSize(new Dimension(120, 25));
 
-        SpinnerModel spinnerModel = new SpinnerNumberModel(3, 2, 6, 1);
+        SpinnerModel spinnerModel = new SpinnerNumberModel(3, 2, MAX_TYPISTS, 1);
         typistCountSpinner = new JSpinner(spinnerModel);
         typistCountSpinner.setPreferredSize(new Dimension(50, 25));
 
@@ -230,6 +236,9 @@ public class RaceManager extends JFrame
     {
         System.exit(0);
     }
+    
+    
+    private Typist[] racers;
 
     /**
      * Handles the configure typist button action.
