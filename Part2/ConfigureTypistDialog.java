@@ -16,6 +16,7 @@ public class ConfigureTypistDialog extends JDialog
 	JSpinner numberSpinner;
 	JTextField avatarField;
 	JComboBox<TypingStyle> styleSelector;
+	JComboBox<KeyboardType> keyboardSelector;
 	
     /**
      * Constructor for ConfigureTypistDialog.
@@ -113,6 +114,7 @@ public class ConfigureTypistDialog extends JDialog
 		
 		avatarField.setText(Character.toString(curr.getSymbol()));
 		styleSelector.setSelectedItem(curr.getTypistBuffs().getTypingStyle());
+		keyboardSelector.setSelectedItem(curr.getTypistBuffs().getKeyboardType());
 	 }
 
     /**
@@ -187,7 +189,7 @@ public class ConfigureTypistDialog extends JDialog
         JLabel keyboardLabel = new JLabel("Keyboard Type:");
         keyboardLabel.setPreferredSize(new Dimension(120, 25));
 
-        JComboBox<KeyboardType> keyboardSelector = new JComboBox<>(KeyboardType.values());
+        keyboardSelector = new JComboBox<>(KeyboardType.values());
         keyboardSelector.setPreferredSize(new Dimension(200, 25));
         keyboardSelector.setMaximumSize(new Dimension(200, 25));
 
