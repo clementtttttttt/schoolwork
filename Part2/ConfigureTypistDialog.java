@@ -18,7 +18,10 @@ public class ConfigureTypistDialog extends JDialog
 	JComboBox<TypingStyle> styleSelector;
 	JComboBox<KeyboardType> keyboardSelector;
 	JButton colourButton;
-	
+	JCheckBox wristSupportCheckbox;
+    JCheckBox energyDrinkCheckbox;
+	JCheckBox noiseCancellingCheckbox;
+
     /**
      * Constructor for ConfigureTypistDialog.
      * Initializes and displays the typist configuration dialog.
@@ -117,6 +120,12 @@ public class ConfigureTypistDialog extends JDialog
 		styleSelector.setSelectedItem(curr.getTypistBuffs().getTypingStyle());
 		keyboardSelector.setSelectedItem(curr.getTypistBuffs().getKeyboardType());
 		colourButton.setBackground(curr.getProgressColour());
+	 
+	 
+		wristSupportCheckbox.setSelected(curr.getTypistBuffs().isWS());
+	 	energyDrinkCheckbox.setSelected(curr.getTypistBuffs().isED());
+		noiseCancellingCheckbox.setSelected(curr.getTypistBuffs().isNC());
+
 	 }
 
     /**
@@ -283,9 +292,9 @@ public class ConfigureTypistDialog extends JDialog
         panel.setBorder(BorderFactory.createTitledBorder("Accessories"));
         panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
-        JCheckBox wristSupportCheckbox = new JCheckBox("Wrist Support");
-        JCheckBox energyDrinkCheckbox = new JCheckBox("Energy Drink");
-        JCheckBox noiseCancellingCheckbox = new JCheckBox("Noise-Cancelling Headphones");
+        wristSupportCheckbox = new JCheckBox("Wrist Support");
+        energyDrinkCheckbox = new JCheckBox("Energy Drink");
+        noiseCancellingCheckbox = new JCheckBox("Noise-Cancelling Headphones");
 
         wristSupportCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         energyDrinkCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
