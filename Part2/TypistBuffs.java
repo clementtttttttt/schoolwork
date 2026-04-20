@@ -16,7 +16,7 @@ class TypistBuffs{
 	}
 	
 	public int getTotalBurnOutBuff(){
-		return ts.getBurnOutBuff() + (hasWS?1:);
+		return ts.getBurnOutBuff() + (hasWS?1:0);
 	}
 		
 	

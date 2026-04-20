@@ -29,6 +29,8 @@ public class Typist
     double accuracy;
     int correctAttempts;
     int totalAttempts;
+    
+    TypistBuffs buffs;
 
     boolean justMistyped;
 
