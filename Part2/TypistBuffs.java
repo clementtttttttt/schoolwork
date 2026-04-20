@@ -32,4 +32,14 @@ class TypistBuffs{
 		return kt;
 	}
 	
+	
+	public boolean isWs(){
+		return hasWS;
+	}
+	public boolean isED(){
+		return hasED;
+	}	
+	public boolean isNC(){
+		return hasNC;
+	}
 };
