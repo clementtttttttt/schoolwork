@@ -26,6 +26,11 @@ public class RaceManager extends JFrame
     {
 		
 		racers = new Typist[MAX_TYPISTS];
+		for(int i=0;i<racers.length; ++i){
+			racers[i] = new Typist('@', "Typosaur", 1);
+		}
+		
+		
         setTitle("Typing Race Manager");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -246,7 +251,7 @@ public class RaceManager extends JFrame
     private void handleConfigureTypist()
     {
         int typistCount = (Integer) typistCountSpinner.getValue();
-        ConfigureTypistDialog dialog = new ConfigureTypistDialog(this, typistCount);
+        ConfigureTypistDialog dialog = new ConfigureTypistDialog(this, typistCount, racers);
         dialog.setVisible(true);
     }
 

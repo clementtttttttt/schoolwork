@@ -10,6 +10,12 @@ import java.awt.event.KeyEvent;
  */
 public class ConfigureTypistDialog extends JDialog
 {
+	
+	
+	private Typist[] racers;
+	JSpinner numberSpinner;
+	JTextField avatarField;
+	
     /**
      * Constructor for ConfigureTypistDialog.
      * Initializes and displays the typist configuration dialog.
@@ -17,9 +23,12 @@ public class ConfigureTypistDialog extends JDialog
      * @param parent the parent frame
      * @param maxTypists the maximum number of typists
      */
-    public ConfigureTypistDialog(JFrame parent, int maxTypists)
+    public ConfigureTypistDialog(JFrame parent, int maxTypists, Typist[] r)
     {
         super(parent, "Configure Typist", true);
+        racers = r;
+        
+        
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(parent);
         setResizable(false);
@@ -88,7 +97,18 @@ public class ConfigureTypistDialog extends JDialog
         JScrollPane scrollPane = new JScrollPane(dialogPanel);
         add(scrollPane);
         pack();
+        
+        loadTypistsData();
     }
+    
+    /**
+     * Loads params of typists into the config dialog
+     *
+     */
+     private void loadTypistsData(){
+		int currentIdx = (Integer)numberSpinner.getValue() - 1; //1-based indexing to 0-based indexing
+		avatarField.setText(Character.toString(racers[currentIdx].getSymbol()));
+	 }
 
     /**
      * Creates the typist number selection panel for the configuration dialog.
@@ -107,9 +127,10 @@ public class ConfigureTypistDialog extends JDialog
         numberLabel.setPreferredSize(new Dimension(120, 25));
 
         SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, maxTypists, 1);
-        JSpinner numberSpinner = new JSpinner(spinnerModel);
+        numberSpinner = new JSpinner(spinnerModel);
         numberSpinner.setPreferredSize(new Dimension(50, 25));
         numberSpinner.setMaximumSize(new Dimension(50, 25));
+        numberSpinner.addChangeListener(e -> loadTypistsData());
 
         panel.add(numberLabel);
         panel.add(Box.createHorizontalStrut(10));
@@ -187,7 +208,7 @@ public class ConfigureTypistDialog extends JDialog
         JLabel avatarLabel = new JLabel("Avatar:");
         avatarLabel.setPreferredSize(new Dimension(120, 25));
 
-        JTextField avatarField = new JTextField(5);
+        avatarField = new JTextField(5);
         avatarField.setPreferredSize(new Dimension(50, 25));
         avatarField.setMaximumSize(new Dimension(25, 25));
 		avatarField.addKeyListener(new KeyAdapter(){
@@ -269,6 +290,8 @@ public class ConfigureTypistDialog extends JDialog
 
         return panel;
     }
+    
+    
 
     /**
      * Creates the attribute impacts display panel for the configuration dialog.
