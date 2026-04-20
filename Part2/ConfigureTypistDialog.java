@@ -15,6 +15,7 @@ public class ConfigureTypistDialog extends JDialog
 	private Typist[] racers;
 	JSpinner numberSpinner;
 	JTextField avatarField;
+	JComboBox<TypingStyle> styleSelector;
 	
     /**
      * Constructor for ConfigureTypistDialog.
@@ -106,8 +107,12 @@ public class ConfigureTypistDialog extends JDialog
      *
      */
      private void loadTypistsData(){
+		 
 		int currentIdx = (Integer)numberSpinner.getValue() - 1; //1-based indexing to 0-based indexing
-		avatarField.setText(Character.toString(racers[currentIdx].getSymbol()));
+		Typist curr = racers[currentIdx];
+		
+		avatarField.setText(Character.toString(curr.getSymbol()));
+		styleSelector.setSelectedItem(curr.getTypistBuffs().getTypingStyle());
 	 }
 
     /**
@@ -155,7 +160,7 @@ public class ConfigureTypistDialog extends JDialog
         JLabel styleLabel = new JLabel("Typing Style:");
         styleLabel.setPreferredSize(new Dimension(120, 25));
 
-        JComboBox<TypingStyle> styleSelector = new JComboBox<>(TypingStyle.values());
+        styleSelector = new JComboBox<>(TypingStyle.values());
         styleSelector.setPreferredSize(new Dimension(200, 25));
         styleSelector.setMaximumSize(new Dimension(200, 25));
 

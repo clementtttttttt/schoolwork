@@ -24,6 +24,12 @@ class TypistBuffs{
 	public int getTotalBurnOutBuff(){
 		return ts.getBurnOutBuff() + (hasWS?1:0);
 	}
-		
+	public TypingStyle getTypingStyle(){
+		return ts;
+	}
+	
+	public KeyboardType getKeyboardType(){
+		return kt;
+	}
 	
 };
