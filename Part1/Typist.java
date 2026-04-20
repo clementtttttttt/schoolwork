@@ -98,6 +98,16 @@ public class Typist
     {
         return accuracy;
     }
+    
+        /**
+     * Returns TypistBuffs object for Typist
+     *
+     * @return TypistBuffs object
+     */
+     
+     public TypistBuffs getTypistBuffs(){
+		 return this.buffs;
+	 }
 
     /**
      * Returns the typist's current progress through the passage.
