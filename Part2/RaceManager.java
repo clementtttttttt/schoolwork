@@ -199,7 +199,7 @@ public class RaceManager extends JFrame
         panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
         JButton startButton = new JButton("Start Race");
-        JButton cancelButton = new JButton("Cancel");
+        JButton cancelButton = new JButton("Exit");
 
         startButton.addActionListener(e -> handleStartRace());
         cancelButton.addActionListener(e -> handleCancel());
