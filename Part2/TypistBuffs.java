@@ -42,4 +42,24 @@ class TypistBuffs{
 	public boolean isNC(){
 		return hasNC;
 	}
+	
+	public void setTypingStyle(TypingStyle newStyle){
+		ts = newStyle;
+	}
+	
+	public void setKeyboardType(KeyboardType newKeyboard){
+		kt = newKeyboard;
+	}
+	
+	public void setWS(boolean value){
+		hasWS = value;
+	}
+	
+	public void setED(boolean value){
+		hasED = value;
+	}
+	
+	public void setNC(boolean value){
+		hasNC = value;
+	}
 };

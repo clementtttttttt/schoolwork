@@ -144,9 +144,17 @@ public class ConfigureTypistDialog extends JDialog
 		TypistBuffs tb = curr.getTypistBuffs();
 		
 		
-		curr.setSymbol(avatarField.getText().charAt(0));
+		if (avatarField.getText().length() > 0) {
+			curr.setSymbol(avatarField.getText().charAt(0));
+		}
 		
+		tb.setTypingStyle((TypingStyle) styleSelector.getSelectedItem());
+		tb.setKeyboardType((KeyboardType) keyboardSelector.getSelectedItem());
+		curr.setProgressColour(colourButton.getBackground());
 		
+		tb.setWS(wristSupportCheckbox.isSelected());
+		tb.setED(energyDrinkCheckbox.isSelected());
+		tb.setNC(noiseCancellingCheckbox.isSelected());
 	 }	
 		
 
@@ -185,72 +193,80 @@ public class ConfigureTypistDialog extends JDialog
      *
      * @return a JPanel containing the typing style selector
      */
-    private JPanel createDialogStylePanel()
-    {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-        panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+     private JPanel createDialogStylePanel()
+     {
+         JPanel panel = new JPanel();
+         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+         panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+         panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
 
-        JLabel styleLabel = new JLabel("Typing Style:");
-        styleLabel.setPreferredSize(new Dimension(120, 25));
+         JLabel styleLabel = new JLabel("Typing Style:");
+         styleLabel.setPreferredSize(new Dimension(120, 25));
 
-        styleSelector = new JComboBox<>(TypingStyle.values());
-        styleSelector.setPreferredSize(new Dimension(200, 25));
-        styleSelector.setMaximumSize(new Dimension(200, 25));
+         styleSelector = new JComboBox<>(TypingStyle.values());
+         styleSelector.setPreferredSize(new Dimension(200, 25));
+         styleSelector.setMaximumSize(new Dimension(200, 25));
+         styleSelector.addActionListener(e -> {
+             saveTypistsData();
+             loadTypistsData();
+         });
 
-        panel.add(styleLabel);
-        panel.add(Box.createHorizontalStrut(10));
-        panel.add(styleSelector);
-        panel.add(Box.createHorizontalGlue());
+         panel.add(styleLabel);
+         panel.add(Box.createHorizontalStrut(10));
+         panel.add(styleSelector);
+         panel.add(Box.createHorizontalGlue());
 
-        return panel;
-    }
+         return panel;
+     }
 
     /**
      * Creates the keyboard type selection panel for the configuration dialog.
      *
      * @return a JPanel containing the keyboard type selector
      */
-    private JPanel createDialogKeyboardPanel()
-    {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-        panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+     private JPanel createDialogKeyboardPanel()
+     {
+         JPanel panel = new JPanel();
+         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+         panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+         panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
 
-        JLabel keyboardLabel = new JLabel("Keyboard Type:");
-        keyboardLabel.setPreferredSize(new Dimension(120, 25));
+         JLabel keyboardLabel = new JLabel("Keyboard Type:");
+         keyboardLabel.setPreferredSize(new Dimension(120, 25));
 
-        keyboardSelector = new JComboBox<>(KeyboardType.values());
-        keyboardSelector.setPreferredSize(new Dimension(200, 25));
-        keyboardSelector.setMaximumSize(new Dimension(200, 25));
+         keyboardSelector = new JComboBox<>(KeyboardType.values());
+         keyboardSelector.setPreferredSize(new Dimension(200, 25));
+         keyboardSelector.setMaximumSize(new Dimension(200, 25));
+         keyboardSelector.addActionListener(e -> {
+             saveTypistsData();
+             loadTypistsData();
+         });
 
-        panel.add(keyboardLabel);
-        panel.add(Box.createHorizontalStrut(10));
-        panel.add(keyboardSelector);
-        panel.add(Box.createHorizontalGlue());
+         panel.add(keyboardLabel);
+         panel.add(Box.createHorizontalStrut(10));
+         panel.add(keyboardSelector);
+         panel.add(Box.createHorizontalGlue());
 
-        return panel;
-    }
+         return panel;
+     }
 
     /**
      * Creates the avatar input panel for the configuration dialog.
      *
      * @return a JPanel containing the avatar text field
      */
-    private JPanel createDialogAvatarPanel()
-    {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+     private JPanel createDialogAvatarPanel()
+     {
+         JPanel panel = new JPanel();
+         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+         panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
-        JLabel avatarLabel = new JLabel("Avatar:");
-        avatarLabel.setPreferredSize(new Dimension(120, 25));
+         JLabel avatarLabel = new JLabel("Avatar:");
+         avatarLabel.setPreferredSize(new Dimension(120, 25));
 
-        avatarField = new JTextField(5);
-        avatarField.setPreferredSize(new Dimension(50, 25));
-        avatarField.setMaximumSize(new Dimension(25, 25));
+         avatarField = new JTextField(5);
+         avatarField.setPreferredSize(new Dimension(50, 25));
+         avatarField.setMaximumSize(new Dimension(25, 25));
 		avatarField.addKeyListener(new KeyAdapter(){
 			public void keyTyped(KeyEvent e){
 				if (avatarField.getText().length() >= 1) // limit textfield to 3 characters
@@ -258,79 +274,98 @@ public class ConfigureTypistDialog extends JDialog
 
 			}
 		});
+         avatarField.addKeyListener(new KeyAdapter(){
+             public void keyReleased(KeyEvent e){
+                 saveTypistsData();
+             }
+         });
 
 
-        panel.add(avatarLabel);
-        panel.add(Box.createHorizontalStrut(10));
-        panel.add(avatarField);
-        panel.add(Box.createHorizontalGlue());
+         panel.add(avatarLabel);
+         panel.add(Box.createHorizontalStrut(10));
+         panel.add(avatarField);
+         panel.add(Box.createHorizontalGlue());
 
-        return panel;
-    }
+         return panel;
+     }
 
     /**
      * Creates the progress colour picker panel for the configuration dialog.
      *
      * @return a JPanel containing the colour picker button
      */
-    private JPanel createDialogColourPanel()
-    {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+     private JPanel createDialogColourPanel()
+     {
+         JPanel panel = new JPanel();
+         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+         panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
-        JLabel colourLabel = new JLabel("Progress Colour:");
-        colourLabel.setPreferredSize(new Dimension(120, 25));
+         JLabel colourLabel = new JLabel("Progress Colour:");
+         colourLabel.setPreferredSize(new Dimension(120, 25));
 
-        colourButton = new JButton("Select Colour");
-        colourButton.setPreferredSize(new Dimension(150, 25));
-        colourButton.setBackground(Color.blue);
-        colourButton.addActionListener(e -> {
-            Color selectedColour = JColorChooser.showDialog(null, "Choose Progress Colour", colourButton.getBackground());
-            if (selectedColour != null)
-            {
-                colourButton.setBackground(selectedColour);
-                colourButton.setOpaque(true);
-            }
-        });
+         colourButton = new JButton("Select Colour");
+         colourButton.setPreferredSize(new Dimension(150, 25));
+         colourButton.setBackground(Color.blue);
+         colourButton.addActionListener(e -> {
+             Color selectedColour = JColorChooser.showDialog(null, "Choose Progress Colour", colourButton.getBackground());
+             if (selectedColour != null)
+             {
+                 colourButton.setBackground(selectedColour);
+                 colourButton.setOpaque(true);
+                 saveTypistsData();
+             }
+         });
 
-        panel.add(colourLabel);
-        panel.add(Box.createHorizontalStrut(10));
-        panel.add(colourButton);
-        panel.add(Box.createHorizontalGlue());
+         panel.add(colourLabel);
+         panel.add(Box.createHorizontalStrut(10));
+         panel.add(colourButton);
+         panel.add(Box.createHorizontalGlue());
 
-        return panel;
-    }
+         return panel;
+     }
 
     /**
      * Creates the accessories section panel for the configuration dialog.
      *
      * @return a JPanel containing accessory checkboxes
      */
-    private JPanel createDialogAccessoriesPanel()
-    {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBorder(BorderFactory.createTitledBorder("Accessories"));
-        panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+     private JPanel createDialogAccessoriesPanel()
+     {
+         JPanel panel = new JPanel();
+         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+         panel.setBorder(BorderFactory.createTitledBorder("Accessories"));
+         panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
-        wristSupportCheckbox = new JCheckBox("Wrist Support");
-        energyDrinkCheckbox = new JCheckBox("Energy Drink");
-        noiseCancellingCheckbox = new JCheckBox("Noise-Cancelling Headphones");
+         wristSupportCheckbox = new JCheckBox("Wrist Support");
+         energyDrinkCheckbox = new JCheckBox("Energy Drink");
+         noiseCancellingCheckbox = new JCheckBox("Noise-Cancelling Headphones");
 
-        wristSupportCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-        energyDrinkCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
-        noiseCancellingCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+         wristSupportCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+         energyDrinkCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+         noiseCancellingCheckbox.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
-        panel.add(wristSupportCheckbox);
-        panel.add(Box.createVerticalStrut(8));
-        panel.add(energyDrinkCheckbox);
-        panel.add(Box.createVerticalStrut(8));
-        panel.add(noiseCancellingCheckbox);
-        panel.add(Box.createVerticalGlue());
+         wristSupportCheckbox.addActionListener(e -> {
+             saveTypistsData();
+             loadTypistsData();
+         });
+         energyDrinkCheckbox.addActionListener(e -> {
+             saveTypistsData();
+             loadTypistsData();
+         });
+         noiseCancellingCheckbox.addActionListener(e -> {
+             saveTypistsData();
+             loadTypistsData();
+         });
 
-        return panel;
-    }
+         panel.add(wristSupportCheckbox);
+         panel.add(Box.createVerticalStrut(8));
+         panel.add(energyDrinkCheckbox);
+         panel.add(Box.createVerticalStrut(8));
+         panel.add(noiseCancellingCheckbox);
+         panel.add(Box.createVerticalGlue());
+
+         return panel;
+     }
     
     
 

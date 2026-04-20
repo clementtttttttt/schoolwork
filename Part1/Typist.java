@@ -61,13 +61,23 @@ public class Typist
     // Methods of class Typist
 
     /**
-     * Return progress colour of typist
+     * Returns progress colour of typist
      *
      * @return Color object that represent the progress bar color of the typist
      */
     public Color getProgressColour()
     {
         return progressColor;
+    }
+
+    /**
+     * Sets the progress colour of the typist.
+     *
+     * @param newColour the new progress colour
+     */
+    public void setProgressColour(Color newColour)
+    {
+        progressColor = newColour;
     }
 
     /**
