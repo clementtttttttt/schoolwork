@@ -21,6 +21,10 @@ public class ConfigureTypistDialog extends JDialog
 	JCheckBox wristSupportCheckbox;
     JCheckBox energyDrinkCheckbox;
 	JCheckBox noiseCancellingCheckbox;
+	
+	JLabel accuracyValueLabel;
+	JLabel speedValueLabel;
+	JLabel burnoutValueLabel;
 
     /**
      * Constructor for ConfigureTypistDialog.
@@ -115,17 +119,23 @@ public class ConfigureTypistDialog extends JDialog
 		 
 		int currentIdx = (Integer)numberSpinner.getValue() - 1; //1-based indexing to 0-based indexing
 		Typist curr = racers[currentIdx];
+		TypistBuffs tb = curr.getTypistBuffs();
+		
 		
 		avatarField.setText(Character.toString(curr.getSymbol()));
-		styleSelector.setSelectedItem(curr.getTypistBuffs().getTypingStyle());
-		keyboardSelector.setSelectedItem(curr.getTypistBuffs().getKeyboardType());
+		styleSelector.setSelectedItem(tb.getTypingStyle());
+		keyboardSelector.setSelectedItem(tb.getKeyboardType());
 		colourButton.setBackground(curr.getProgressColour());
 	 
 	 
-		wristSupportCheckbox.setSelected(curr.getTypistBuffs().isWS());
-	 	energyDrinkCheckbox.setSelected(curr.getTypistBuffs().isED());
-		noiseCancellingCheckbox.setSelected(curr.getTypistBuffs().isNC());
+		wristSupportCheckbox.setSelected(tb.isWS());
+	 	energyDrinkCheckbox.setSelected(tb.isED());
+		noiseCancellingCheckbox.setSelected(tb.isNC());
 
+
+		accuracyValueLabel.setText(Integer.toString(tb.getTotalAccuracyBuff()));
+		speedValueLabel.setText(Integer.toString(tb.getTotalSpeedBuff()));
+		burnoutValueLabel.setText(Integer.toString(tb.getTotalBurnOutBuff()));
 	 }
 
     /**
@@ -328,7 +338,7 @@ public class ConfigureTypistDialog extends JDialog
         accuracyPanel.setLayout(new BoxLayout(accuracyPanel, BoxLayout.X_AXIS));
         accuracyPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         JLabel accuracyLabel = new JLabel("Accuracy: ");
-        JLabel accuracyValueLabel = new JLabel("");
+        accuracyValueLabel = new JLabel("");
         accuracyPanel.add(accuracyLabel);
         accuracyPanel.add(accuracyValueLabel);
         accuracyPanel.add(Box.createHorizontalGlue());
@@ -337,7 +347,7 @@ public class ConfigureTypistDialog extends JDialog
         speedPanel.setLayout(new BoxLayout(speedPanel, BoxLayout.X_AXIS));
         speedPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         JLabel speedLabel = new JLabel("Speed: ");
-        JLabel speedValueLabel = new JLabel("");
+        speedValueLabel = new JLabel("");
         speedPanel.add(speedLabel);
         speedPanel.add(speedValueLabel);
         speedPanel.add(Box.createHorizontalGlue());
@@ -346,7 +356,7 @@ public class ConfigureTypistDialog extends JDialog
         burnoutPanel.setLayout(new BoxLayout(burnoutPanel, BoxLayout.X_AXIS));
         burnoutPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         JLabel burnoutLabel = new JLabel("Burnout Risk: ");
-        JLabel burnoutValueLabel = new JLabel("");
+        burnoutValueLabel = new JLabel("");
         burnoutPanel.add(burnoutLabel);
         burnoutPanel.add(burnoutValueLabel);
         burnoutPanel.add(Box.createHorizontalGlue());
