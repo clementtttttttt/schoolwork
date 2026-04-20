@@ -27,7 +27,7 @@ public class RaceManager extends JFrame
 		
 		racers = new Typist[MAX_TYPISTS];
 		for(int i=0;i<racers.length; ++i){
-			racers[i] = new Typist('@', "Typosaur", 1);
+			racers[i] = new Typist('@', "Typosaur " + i, 1);
 		}
 		
 		
