@@ -10,7 +10,14 @@ class TypistBuffs{
 		}
 		return ret;
 	}
-	public int getTotal
+	public int getTotalSpeedBuff(){
+		
+		return kit.getSpeedBonus();
+	}
+	
+	public int getTotalBurnOutBuff(){
+		return ts.getBurnOutBuff() + (hasWS?1:);
+	}
 		
 	
 };
