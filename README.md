@@ -12,11 +12,23 @@ TypingRaceSimulator/
 
 ## Part 1 — Textual Simulation
 
-### How to compile & run
+### How to compile 
 
+javac Part2/*.java Part1/*.java
+
+### How to run
+
+#### Part 1
+
+java -cp Part1:Part2 TypingRace
+
+OR
+ 
 run compilePart1.sh in the root folder
 
 ## Part 2 — GUI Simulation
+
+java -cp Part1:Part2 
 
 run compilePart2.sh in the root folder
 

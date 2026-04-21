@@ -232,6 +232,9 @@ public class RaceManager extends JFrame
         System.out.println("Autocorrect: " + autocorrectEnabled);
         System.out.println("Caffeine Mode: " + caffeineEnabled);
         System.out.println("Night Shift: " + nightShiftEnabled);
+        
+        setVisible(false);
+        
     }
 
     /**
