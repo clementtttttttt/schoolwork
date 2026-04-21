@@ -250,6 +250,8 @@ public class RaceManager extends JFrame
         
         setVisible(false);
         
+        RaceWindow rw = new RaceWindow(r);
+        
     }
 
     /**

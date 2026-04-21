@@ -64,6 +64,14 @@ public class TypingRace
 		nightShift = ns;
 		
 	}
+	
+	/**
+	 * Gets the race contestents
+	 * @return array of typists
+	 */
+	 public Typist[] getTypists(){
+			return racers;
+	 }
 
 
     /**
