@@ -64,6 +64,7 @@ public class RaceManager extends JFrame
         // Action Buttons
         JPanel buttonPanel = createButtonPanel();
         mainPanel.add(buttonPanel);
+        
 
         // Add main panel to frame
         add(mainPanel);
@@ -204,16 +205,21 @@ public class RaceManager extends JFrame
 
         JButton startButton = new JButton("Start Race");
         JButton cancelButton = new JButton("Exit");
+        JButton saveButton = new JButton("Save");
 
         startButton.addActionListener(e -> handleStartRace());
         cancelButton.addActionListener(e -> handleCancel());
+        saveButton.addActionListener(e -> handleSave());
 
         startButton.setPreferredSize(new Dimension(120, 35));
+        cancelButton.setPreferredSize(new Dimension(120, 35));
         cancelButton.setPreferredSize(new Dimension(120, 35));
 
         panel.add(startButton);
         panel.add(Box.createHorizontalStrut(10));
         panel.add(cancelButton);
+        panel.add(Box.createHorizontalStrut(10));
+        panel.add(saveButton);
         panel.add(Box.createHorizontalGlue());
 
         return panel;
@@ -249,6 +255,12 @@ public class RaceManager extends JFrame
         System.exit(0);
     }
     
+    /**
+     * Handles the save to file action.
+     */
+    private void handleSave(){
+		 
+	}
     
     private Typist[] racers;
 
