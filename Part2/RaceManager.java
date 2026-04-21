@@ -262,6 +262,10 @@ public class RaceManager extends JFrame
         dialog.setVisible(true);
     }
     
+    //dummy function for spec compliance...
+    public static void startRaceGUI(){
+		main(null);
+	}
     
 
     /**
