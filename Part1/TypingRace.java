@@ -1,5 +1,6 @@
 import java.util.concurrent.TimeUnit;
 import java.lang.Math;
+import java.util.Arrays;
 
 /**
  * A typing race simulation. Three typists race to complete a passage of text,
@@ -14,7 +15,7 @@ import java.lang.Math;
  */
 public class TypingRace
 {
-    private int passageLength;   // Total characters in the passage to type
+    private String passage;   // Total characters in the passage to type
     private Typist[] racers;
 
     // Accuracy thresholds for mistype and burnout events
@@ -31,9 +32,9 @@ public class TypingRace
      * @param passageLength the number of characters in the passage to type
      * @param no of typistrs
      */
-    public TypingRace(int passageLength, int no)
+    public TypingRace(String passage, int no)
     {
-        this.passageLength = passageLength;
+        this.passage = passage;
         racers = new Typist[no];
     }
     
@@ -43,7 +44,9 @@ public class TypingRace
      * @param passageLength passage length...
      */
     public TypingRace(int passageLength){
-		this(passageLength, 3);
+		char[] a = new char[passageLength];
+		Arrays.fill(a, '*'); //create dummy passage of length
+		this(new String(a), 3);
 	}
 
     /**
@@ -177,7 +180,7 @@ public class TypingRace
     private boolean raceFinishedBy(Typist theTypist)
     {
         // Ty was confident this condition was correct
-        if (theTypist.getProgress() >= passageLength)
+        if (theTypist.getProgress() >= passage.length())
         {
             return true;
         }
@@ -196,8 +199,8 @@ public class TypingRace
     {
         System.out.print('\u000C'); // Clear terminal
 
-        System.out.println("  TYPING RACE — passage length: " + passageLength + " chars");
-        multiplePrint('=', passageLength + 3);
+        System.out.println("  TYPING RACE — passage length: " + passage.length() + " chars");
+        multiplePrint('=', passage.length() + 3);
         System.out.println();
 
 		for(Typist i : racers){
@@ -206,7 +209,7 @@ public class TypingRace
 		}
 
 
-        multiplePrint('=', passageLength + 3);
+        multiplePrint('=', passage.length() + 3);
         System.out.println();
         System.out.println("  [zz] = burnt out    [<] = just mistyped");
     }
@@ -226,7 +229,7 @@ public class TypingRace
     private void printSeat(Typist theTypist)
     {
         int spacesBefore = theTypist.getProgress();
-        int spacesAfter = passageLength - theTypist.getProgress();
+        int spacesAfter = passage.length() - theTypist.getProgress();
 
         System.out.print('|');
         multiplePrint(' ', spacesBefore);

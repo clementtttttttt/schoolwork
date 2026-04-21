@@ -18,14 +18,18 @@ public class RaceManager extends JFrame
 
 	private static final int MAX_TYPISTS = 6;
 
+	public RaceManager(){
+		this(new Typist[MAX_TYPISTS]);
+	}
+
     /**
      * Constructor for RaceManager.
      * Initializes and displays the race configuration window.
      */
-    public RaceManager()
+    public RaceManager(Typist[] in)
     {
 		
-		racers = new Typist[MAX_TYPISTS];
+		racers = in;
 		for(int i=0;i<racers.length; ++i){
 			racers[i] = new Typist('@', "Typosaur " + i, 1);
 		}
@@ -257,6 +261,8 @@ public class RaceManager extends JFrame
         ConfigureTypistDialog dialog = new ConfigureTypistDialog(this, typistCount, racers);
         dialog.setVisible(true);
     }
+    
+    
 
     /**
      * Main method to launch the RaceManager GUI.
