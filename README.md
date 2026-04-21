@@ -26,11 +26,21 @@ OR
  
 run compilePart1.sh in the root folder
 
+OR
+
+rewrite main() to call startRace() manually.
+
 ## Part 2 — GUI Simulation
 
-java -cp Part1:Part2 
+java -cp Part1:Part2 RaceManager 
+
+OR
 
 run compilePart2.sh in the root folder
+
+OR
+
+run startRaceGUI somewhere along your code.
 
 ## Dependencies
 
