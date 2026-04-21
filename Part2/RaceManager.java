@@ -242,9 +242,8 @@ public class RaceManager extends JFrame
 
         TypingRace r = new TypingRace(selectedPassage, typistCount);
         
-        int cnt=1; //needed for compatiblity
-        for(Typist i : racers){
-			r.addTypist(i, cnt++);
+        for(int i=0; i<typistCount;++i){
+			r.addTypist(racers[i] , i + 1);
 		}
         
         r.setMods(autocorrectEnabled, caffeineEnabled, nightShiftEnabled);
