@@ -24,6 +24,8 @@ public class TypingRace
     private static final int    SLIDE_BACK_AMOUNT   = 2;
     private static final int    BURNOUT_DURATION     = 3;
 
+	private static boolean autoCorrect, caffeine, nightShift;
+
     /**
      * Constructor for objects of class TypingRace.
      * Sets up the race with a passage of the given length.
@@ -36,6 +38,7 @@ public class TypingRace
     {
         this.passage = passage;
         racers = new Typist[no];
+        autoCorrect = caffeine = nightShift = false;
     }
     
     /**
@@ -48,6 +51,20 @@ public class TypingRace
 		Arrays.fill(a, '*'); //create dummy passage of length
 		this(new String(a), 3);
 	}
+	
+	/**
+	 * Set modifiers 
+	 * @param autoCorrect halves slideback
+	 * @param caffeine speed boost for first 10 turns then more burnout
+	 * @param nightshift debuff everyone's accuracies 
+	 */
+	public void setMods(boolean ac, boolean cf, boolean ns){
+		autoCorrect = ac;
+		caffeine = cf;
+		nightShift = ns;
+		
+	}
+
 
     /**
      * Seats a typist at the given seat number (1, 2, or 3).

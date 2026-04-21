@@ -236,12 +236,18 @@ public class RaceManager extends JFrame
         boolean caffeineEnabled = caffeineCheckbox.isSelected();
         boolean nightShiftEnabled = nightShiftCheckbox.isSelected();
 
-        System.out.println("=== Race Configuration ===");
-        System.out.println("Passage: " + selectedPassage);
-        System.out.println("Typists: " + typistCount);
-        System.out.println("Autocorrect: " + autocorrectEnabled);
-        System.out.println("Caffeine Mode: " + caffeineEnabled);
-        System.out.println("Night Shift: " + nightShiftEnabled);
+		if(selectedPassage.equals("Custom Passage")){
+			selectedPassage = customPassageCont.getText();
+		}
+
+        TypingRace r = new TypingRace(selectedPassage, typistCount);
+        
+        int cnt=1; //needed for compatiblity
+        for(Typist i : racers){
+			r.addTypist(i, cnt++);
+		}
+        
+        r.setMods(autocorrectEnabled, caffeineEnabled, nightShiftEnabled);
         
         setVisible(false);
         
