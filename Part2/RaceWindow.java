@@ -20,7 +20,7 @@ public class RaceWindow extends JFrame
 
         // Create main panel with padding
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setLayout(new FlowLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
 
@@ -31,6 +31,7 @@ public class RaceWindow extends JFrame
 		
 		pack();
 		setVisible(true);
+
 	}
 	
 	
@@ -44,26 +45,29 @@ public class RaceWindow extends JFrame
 		for(int i=0; i<arr.length; ++i){
 			JPanel a = new JPanel();	
 			a.setLayout(new BoxLayout(a, BoxLayout.X_AXIS));
+			a.setMaximumSize(new Dimension(1000, 25));
+			a.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
 			typistTracks[i] = new JTextPane(){
-				public boolean getScrollableTracksViewportWidth()
-				{
-					return getParent().getSize().width > 150;
-				}
+
 				
 			};
-			typistTracks[i].setText(tr.getPassage());
 			typistTracks[i].setFocusable(false);
+			typistTracks[i].setText(tr.getPassage());
 			
-			a.add(typistTracks[i]);
+			JScrollPane sp = new JScrollPane(typistTracks[i],
+			JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+			sp.setPreferredSize(new Dimension(700, 25));
+			sp.setMaximumSize(new Dimension(700, 25));
+			a.add(sp);
 			
 			JLabel nameLabel = new JLabel(arr[i].getName());
 			nameLabel.setPreferredSize(new Dimension(120, 25));
-
 			a.add(nameLabel);
-			ret.add(a);
-			ret.add(Box.createVerticalStrut(15));
 			
+			ret.add(a);
+			ret.add(Box.createVerticalStrut(10));
 		
 		}
 		return ret;
