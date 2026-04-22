@@ -11,7 +11,9 @@ import java.awt.event.ActionListener;
 public class RaceWindow extends JFrame
 {
 	TypingRace tr;
-	
+	private int race_ticks;
+	private final int RACE_TICK_PERIOD_MS = 16;
+
 	JTextPane [] typistTracks;
 	RaceWindow(TypingRace in){
 		tr = in;
@@ -34,8 +36,10 @@ public class RaceWindow extends JFrame
 		
 		pack();
 		setVisible(true);
-
-		new Timer(16, new ActionListener(){
+		
+		race_ticks = 0;
+		
+		new Timer(RACE_TICK_PERIOD_MS, new ActionListener(){
 			public void actionPerformed(ActionEvent evt){
 				race();
 			}
@@ -43,9 +47,9 @@ public class RaceWindow extends JFrame
 		}).start(); //starts the race
 	}
 	
-	
 	private void race(){
-			System.out.println("Tick");
+
+		++race_ticks;
 	}
 	
 	JPanel createRacingField(){
