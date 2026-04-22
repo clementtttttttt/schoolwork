@@ -73,6 +73,13 @@ public class TypingRace
 			return racers;
 	 }
 
+	/**
+	 * Gets the current passage
+	 * @return passage as string
+	 */
+	 public String getPassage(){
+			return passage;
+	 }
 
     /**
      * Seats a typist at the given seat number (1, 2, or 3).
