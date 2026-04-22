@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 
 /**
@@ -21,7 +23,7 @@ public class RaceWindow extends JFrame
         // Create main panel with padding
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new FlowLayout());
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 
 		JPanel raceFieldPanel = createRacingField(); 
@@ -53,6 +55,7 @@ public class RaceWindow extends JFrame
 				
 			};
 			typistTracks[i].setFocusable(false);
+			typistTracks[i].setEditable(false);
 			typistTracks[i].setText(tr.getPassage());
 			
 			JScrollPane sp = new JScrollPane(typistTracks[i],
@@ -60,6 +63,8 @@ public class RaceWindow extends JFrame
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 			sp.setPreferredSize(new Dimension(700, 25));
 			sp.setMaximumSize(new Dimension(700, 25));
+			sp.setFocusable(false);
+			sp.setWheelScrollingEnabled(false);
 			a.add(sp);
 			
 			JLabel nameLabel = new JLabel(arr[i].getName());
