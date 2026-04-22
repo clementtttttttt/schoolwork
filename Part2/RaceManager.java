@@ -231,7 +231,7 @@ public class RaceManager extends JFrame
         boolean caffeineEnabled = caffeineCheckbox.isSelected();
         boolean nightShiftEnabled = nightShiftCheckbox.isSelected();
 
-		if(selectedPassage.equals("Custom")){
+		if(((Passages)passageSelector.getSelectedItem()).equals(Passages.CUSTOM)){
 			selectedPassage = customPassageCont.getText();
 		}
 
