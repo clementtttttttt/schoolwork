@@ -57,6 +57,7 @@ public class RaceWindow extends JFrame
 			typistTracks[i].setFocusable(false);
 			typistTracks[i].setEditable(false);
 			typistTracks[i].setText(tr.getPassage());
+			typistTracks[i].setCaretPosition(0);
 			
 			JScrollPane sp = new JScrollPane(typistTracks[i],
 			JScrollPane.VERTICAL_SCROLLBAR_NEVER,
@@ -66,6 +67,7 @@ public class RaceWindow extends JFrame
 			sp.setFocusable(false);
 			sp.setWheelScrollingEnabled(false);
 			a.add(sp);
+
 			
 			JLabel nameLabel = new JLabel(arr[i].getName());
 			nameLabel.setPreferredSize(new Dimension(120, 25));
