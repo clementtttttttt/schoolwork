@@ -170,7 +170,7 @@ public class TypingRace
      *
      * @param theTypist the typist to advance
      */
-    private void advanceTypist(Typist theTypist)
+    public void advanceTypist(Typist theTypist)
     {
         if (theTypist.isBurntOut())
         {
@@ -209,7 +209,7 @@ public class TypingRace
      * @param theTypist the typist to check
      * @return true if their progress has reached or passed the passage length
      */
-    private boolean raceFinishedBy(Typist theTypist)
+    public boolean raceFinishedBy(Typist theTypist)
     {
         // Ty was confident this condition was correct
         if (theTypist.getProgress() >= passage.length())
