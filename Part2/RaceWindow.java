@@ -4,6 +4,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.text.Highlighter;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.BadLocationException;
+
 
 /**
  * RaceWindow provides the real juicy typing race bits and graphs.
@@ -13,6 +17,8 @@ public class RaceWindow extends JFrame
 	TypingRace tr;
 	private int race_ticks;
 	private final int RACE_TICK_PERIOD_MS = 16;
+
+	Timer raceSched;
 
 	JTextPane [] typistTracks;
 	RaceWindow(TypingRace in){
@@ -39,17 +45,54 @@ public class RaceWindow extends JFrame
 		
 		race_ticks = 0;
 		
-		new Timer(RACE_TICK_PERIOD_MS, new ActionListener(){
+		raceSched = new Timer(RACE_TICK_PERIOD_MS, new ActionListener(){
 			public void actionPerformed(ActionEvent evt){
 				race();
 			}
 		
-		}).start(); //starts the race
+		});
+		raceSched.start(); //starts the race
 	}
 	
 	private void race(){
-
+		Typist[] racers = tr.getTypists();
+		
+		if(race_ticks % 1 == 0){
+			for(int i=0; i<racers.length; ++i){
+				Typist currT = racers[i];
+				tr.advanceTypist(currT);
+				
+				int prog = currT.getProgress();
+				
+				if(prog == tr.getPassage().length()){ //race ended
+					handleRaceEnded(currT);
+				}
+				
+				JTextPane currTT = typistTracks[i];
+				currTT.setCaretPosition(prog);
+				
+				Highlighter.HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(currT.getProgressColour());
+				Highlighter h = currTT.getHighlighter();
+				h.removeAllHighlights(); //clear old highlight
+				try{
+					h.addHighlight(0, prog, painter);
+				}catch(Exception e){
+					
+				}
+				
+				
+			}
+		}
+		
+		
 		++race_ticks;
+	}
+	
+	private void handleRaceEnded(Typist winner){
+			System.out.println("RACE ENDED!!!!!");
+			
+			raceSched.stop();
+			setVisible(false);
 	}
 	
 	JPanel createRacingField(){
