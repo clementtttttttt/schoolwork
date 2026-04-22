@@ -1,7 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 /**
@@ -34,8 +35,18 @@ public class RaceWindow extends JFrame
 		pack();
 		setVisible(true);
 
+		new Timer(16, new ActionListener(){
+			public void actionPerformed(ActionEvent evt){
+				race();
+			}
+		
+		}).start(); //starts the race
 	}
 	
+	
+	private void race(){
+			System.out.println("Tick");
+	}
 	
 	JPanel createRacingField(){
 		Typist[] arr = tr.getTypists();
