@@ -48,7 +48,7 @@ public class RaceWindow extends JFrame
 			typistTracks[i] = new JTextPane(){
 				public boolean getScrollableTracksViewportWidth()
 				{
-					return getParent().getSize().width > 100;
+					return getParent().getSize().width > 150;
 				}
 				
 			};
@@ -62,6 +62,7 @@ public class RaceWindow extends JFrame
 
 			a.add(nameLabel);
 			ret.add(a);
+			ret.add(Box.createVerticalStrut(15));
 			
 		
 		}

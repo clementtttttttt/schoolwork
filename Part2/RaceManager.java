@@ -9,7 +9,7 @@ import java.awt.*;
  */
 public class RaceManager extends JFrame
 {
-    private JComboBox<String> passageSelector;
+    private JComboBox<Passages> passageSelector;
     private JSpinner typistCountSpinner;
     private JCheckBox autocorrectCheckbox;
     private JCheckBox caffeineCheckbox;
@@ -91,13 +91,8 @@ public class RaceManager extends JFrame
         JLabel label = new JLabel("Select Passage:");
         label.setPreferredSize(new Dimension(120, 25));
 
-        String[] passages = {
-            "The Quick Brown Fox",
-            "Lorem Ipsum",
-            "Programming in Java",
-            "Custom Passage"
-        };
-        passageSelector = new JComboBox<>(passages);
+
+        passageSelector = new JComboBox<>(Passages.values());
         passageSelector.setPreferredSize(new Dimension(200, 25));
 
         panel.add(label);
@@ -230,13 +225,13 @@ public class RaceManager extends JFrame
      */
     private void handleStartRace()
     {
-        String selectedPassage = (String) passageSelector.getSelectedItem();
+        String selectedPassage = ((Passages)passageSelector.getSelectedItem()).getPassage();
         int typistCount = (Integer) typistCountSpinner.getValue();
         boolean autocorrectEnabled = autocorrectCheckbox.isSelected();
         boolean caffeineEnabled = caffeineCheckbox.isSelected();
         boolean nightShiftEnabled = nightShiftCheckbox.isSelected();
 
-		if(selectedPassage.equals("Custom Passage")){
+		if(selectedPassage.equals("Custom")){
 			selectedPassage = customPassageCont.getText();
 		}
 
