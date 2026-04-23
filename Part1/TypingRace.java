@@ -181,13 +181,13 @@ public class TypingRace
         }
 
 
-		double accuracy = theTypist.getAccuracy();
+		double accuracy = theTypist.getAccuracy() + theTypist.getTypistBuffs().getTotalAccuracyBuff() * 0.1;
 		if(nightShift){
 			accuracy -= NIGHTSHIFT_ACC_DEBUFF;
 		}
 		
         // Attempt to type a character
-        if (Math.random() < theTypist.getAccuracy())
+        if (Math.random() < accuracy )
         {
             theTypist.typeCharacter();
         }
