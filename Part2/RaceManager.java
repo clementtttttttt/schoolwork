@@ -233,6 +233,11 @@ public class RaceManager extends JFrame
 
 		if(((Passages)passageSelector.getSelectedItem()).equals(Passages.CUSTOM)){
 			selectedPassage = customPassageCont.getText();
+			
+			if(selectedPassage.length() == 0){
+				customPassageCont.setText("Custom passage cannot be blank!!!");
+				return;
+			}
 		}
 
         TypingRace r = new TypingRace(selectedPassage, typistCount);
