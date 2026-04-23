@@ -23,6 +23,7 @@ public class TypingRace
     private static final double MISTYPE_BASE_CHANCE = 0.3;
     private static final int    SLIDE_BACK_AMOUNT   = 2;
     private static final int    BURNOUT_DURATION     = 3;
+    private static final double 	NIGHTSHIFT_ACC_DEBUFF = 0.1;
 
 	private static boolean autoCorrect, caffeine, nightShift;
 
@@ -179,6 +180,12 @@ public class TypingRace
             return;
         }
 
+
+		double accuracy = theTypist.getAccuracy();
+		if(nightShift){
+			accuracy -= NIGHTSHIFT_ACC_DEBUFF;
+		}
+		
         // Attempt to type a character
         if (Math.random() < theTypist.getAccuracy())
         {
