@@ -64,12 +64,21 @@ public class RaceWindow extends JFrame
 				
 				int prog = currT.getProgress();
 				
-				if(prog == tr.getPassage().length()){ //race ended
+				if(prog >= (tr.getPassage().length()-1)){ //race ended
 					handleRaceEnded(currT);
 				}
 				
 				JTextPane currTT = typistTracks[i];
+				
+				
+				StringBuilder a = new StringBuilder(tr.getPassage());
+				a.setCharAt(prog, currT.getSymbol());
+				currTT.setText(a.toString());
+				
 				currTT.setCaretPosition(prog);
+				
+				
+
 				
 				Highlighter.HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(currT.getProgressColour());
 				Highlighter h = currTT.getHighlighter();
