@@ -253,6 +253,8 @@ public class RaceManager
         
         RaceWindow rw = new RaceWindow(r);
         
+        rw.start();
+        
     }
 
     /**

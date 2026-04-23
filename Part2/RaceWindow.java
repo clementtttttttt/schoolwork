@@ -12,11 +12,13 @@ import javax.swing.text.BadLocationException;
 /**
  * RaceWindow provides the real juicy typing race bits and graphs.
  */
-public class RaceWindow extends JFrame
+public class RaceWindow 
 {
 	TypingRace tr;
 	private int race_ticks;
 	private final int RACE_TICK_PERIOD_MS = 16;
+	
+	private JFrame win;
 
 	Timer raceSched;
 
@@ -24,10 +26,10 @@ public class RaceWindow extends JFrame
 	RaceWindow(TypingRace in){
 		tr = in;
 		
-		setTitle("RACE");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
+		win = new JFrame("RACE");
+        win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        win.setLocationRelativeTo(null);
+        win.setResizable(false);
 
         // Create main panel with padding
         JPanel mainPanel = new JPanel();
@@ -38,13 +40,18 @@ public class RaceWindow extends JFrame
 		JPanel raceFieldPanel = createRacingField(); 
 		mainPanel.add(raceFieldPanel);
 
-		add(mainPanel);
+		win.add(mainPanel);
 		
-		pack();
-		setVisible(true);
+		win.pack();
 		
 		race_ticks = 0;
 		
+
+	}
+	
+	public void start(){
+		
+		win.setVisible(true);
 		raceSched = new Timer(RACE_TICK_PERIOD_MS, new ActionListener(){
 			public void actionPerformed(ActionEvent evt){
 				race();
@@ -101,7 +108,7 @@ public class RaceWindow extends JFrame
 			System.out.println("RACE ENDED!!!!!");
 			
 			raceSched.stop();
-			setVisible(false);
+			win.setVisible(false);
 	}
 	
 	JPanel createRacingField(){
