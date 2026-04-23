@@ -108,10 +108,28 @@ public class RaceWindow
 	}
 	
 	private void handleRaceEnded(Typist winner){
-			System.out.println("RACE ENDED!!!!!");
 			
 			raceSched.stop();
-			win.setVisible(false);
+			
+			JDialog rd = new JDialog(win, "Results", true);
+
+			rd.setLocationRelativeTo(win);
+			rd.setResizable(false);
+			
+			
+			JPanel resultsPanel = new JPanel();
+			resultsPanel.setLayout(new FlowLayout());
+			resultsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+
+
+			rd.add(resultsPanel);
+
+			rd.pack();
+
+			rd.setVisible(true);
+			
+			
 	}
 	
 	JPanel createRacingField(){

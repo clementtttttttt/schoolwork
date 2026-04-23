@@ -282,6 +282,7 @@ public class RaceManager
         int typistCount = (Integer) typistCountSpinner.getValue();
         ConfigureTypistDialog dialog = new ConfigureTypistDialog(win, typistCount, racers);
         dialog.setVisible(true);
+        dialog.setModal(true);
     }
     
     public void startRaceGUI(){
