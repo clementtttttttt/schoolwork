@@ -208,9 +208,12 @@ public class TypingRace
             theTypist.slideBack(slideBackAmount);
         }
 
+		double newAcc =  (0.3 * theTypist.getAccuracy() * theTypist.getAccuracy() * theTypist.getAccuracy() + theTypist.getTypistBuffs().getTotalBurnOutBuff() * -0.1);
+
+
         // Burnout check — pushing too hard increases burnout risk
         // (probability scales with accuracy cubed, limited to 0.3
-        if (Math.random() < (0.3 * theTypist.getAccuracy() * theTypist.getAccuracy() * theTypist.getAccuracy() + theTypist.getTypistBuffs().getTotalBurnOutBuff() * -0.1))
+        if (Math.random() < newAcc)
         {
             theTypist.burnOut(BURNOUT_DURATION);
         }

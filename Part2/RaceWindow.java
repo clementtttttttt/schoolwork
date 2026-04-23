@@ -59,6 +59,9 @@ public class RaceWindow
 		
 		});
 		raceSched.start(); //starts the race
+		
+		
+
 	}
 	
 	private void race(){
