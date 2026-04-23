@@ -126,6 +126,9 @@ public class RaceWindow extends JFrame
 			typistTracks[i].setText(tr.getPassage());
 			typistTracks[i].setCaretPosition(0);
 			
+			Font font = new Font(Font.MONOSPACED, Font.PLAIN, 15);
+			typistTracks[i].setFont(font);
+			
 			JScrollPane sp = new JScrollPane(typistTracks[i],
 			JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
