@@ -185,7 +185,8 @@ public class TypingRace
 		if(nightShift){
 			accuracy -= NIGHTSHIFT_ACC_DEBUFF;
 		}
-		
+
+		accuracy = Math.max(accuracy, 0.1);
         // Attempt to type a character
         if (Math.random() < accuracy )
         {
