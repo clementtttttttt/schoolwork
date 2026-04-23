@@ -7,7 +7,7 @@ import java.awt.*;
  * Users can select a passage, configure the number of typists,
  * and enable/disable difficulty modifiers.
  */
-public class RaceManager extends JFrame
+public class RaceManager 
 {
     private JComboBox<Passages> passageSelector;
     private JSpinner typistCountSpinner;
@@ -17,6 +17,8 @@ public class RaceManager extends JFrame
     private JTextArea customPassageCont;
 
 	private static final int MAX_TYPISTS = 6;
+	
+	private JFrame win;
 
 	public RaceManager(){
 		this(new Typist[MAX_TYPISTS]);
@@ -34,11 +36,10 @@ public class RaceManager extends JFrame
 			racers[i] = new Typist('@', "Typosaur " + i, 0.5);
 		}
 		
-		
-        setTitle("Typing Race Manager");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
+		win = new JFrame("Typing Race Manager");
+        win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        win.setLocationRelativeTo(null);
+        win.setResizable(false);
 
         // Create main panel with padding
         JPanel mainPanel = new JPanel();
@@ -67,9 +68,9 @@ public class RaceManager extends JFrame
         
 
         // Add main panel to frame
-        add(mainPanel);
-        pack();
-        setVisible(true);
+        win.add(mainPanel);
+        win.pack();
+        win.setVisible(true);
     }
 
     /**
@@ -248,7 +249,7 @@ public class RaceManager extends JFrame
         
         r.setMods(autocorrectEnabled, caffeineEnabled, nightShiftEnabled);
         
-        setVisible(false);
+        win.setVisible(false);
         
         RaceWindow rw = new RaceWindow(r);
         
@@ -277,13 +278,12 @@ public class RaceManager extends JFrame
     private void handleConfigureTypist()
     {
         int typistCount = (Integer) typistCountSpinner.getValue();
-        ConfigureTypistDialog dialog = new ConfigureTypistDialog(this, typistCount, racers);
+        ConfigureTypistDialog dialog = new ConfigureTypistDialog(win, typistCount, racers);
         dialog.setVisible(true);
     }
     
-    //dummy function for spec compliance...
-    public static void startRaceGUI(){
-		main(null);
+    public void startRaceGUI(){
+			win.setVisible(true);
 	}
     
 
@@ -294,6 +294,8 @@ public class RaceManager extends JFrame
      */
     public static void main(String[] args)
     {
-        SwingUtilities.invokeLater(() -> new RaceManager());
+		
+        RaceManager rm =new RaceManager();
+        rm.startRaceGUI();
     }
 }
