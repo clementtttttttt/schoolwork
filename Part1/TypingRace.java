@@ -192,6 +192,11 @@ public class TypingRace
             {
                 slideBackAmount = 0;
             }
+            
+            if(autoCorrect){
+				slideBackAmount >>= 1; //fancy halving method hehe
+			}
+            
             theTypist.slideBack(slideBackAmount);
         }
 
