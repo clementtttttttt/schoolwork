@@ -45,8 +45,8 @@ run startRaceGUI somewhere along your code.
 ## Dependencies
 
 - Java Development Kit (JDK) 11 or higher
-- No external libraries required for Part 1
-- Part 2 may use Java Swing (included in standard JDK) or JavaFX
+- No external libraries required for Part 1 & Part 2
+- Part 2 only requires Java Swing
 
 ## Notes
 
