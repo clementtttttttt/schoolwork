@@ -23,6 +23,7 @@ public class RaceWindow
 	Timer raceSched;
 
 	JTextPane [] typistTracks;
+	
 	RaceWindow(TypingRace in){
 		tr = in;
 		
@@ -49,7 +50,12 @@ public class RaceWindow
 
 	}
 	long startTime;
-	public void start(){
+	
+	JFrame rmWin;
+	
+	public void start(JFrame rmw){
+		
+		rmWin = rmw;
 		
 		for(Typist i : tr.getTypists()){
 			i.resetToStart();
@@ -172,6 +178,9 @@ public class RaceWindow
 
 			rd.setVisible(true);
 			
+			win.setVisible(false);
+			
+			rmWin.setVisible(true);
 			
 	}
 	
