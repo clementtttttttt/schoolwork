@@ -48,7 +48,7 @@ public class RaceWindow
 		
 
 	}
-	
+	long startTime;
 	public void start(){
 		
 		win.setVisible(true);
@@ -58,6 +58,9 @@ public class RaceWindow
 			}
 		
 		});
+		
+		startTime = System.currentTimeMillis() ;
+
 		raceSched.start(); //starts the race
 		
 		
@@ -75,7 +78,7 @@ public class RaceWindow
 				int prog = currT.getProgress();
 				
 				if(prog >= (tr.getPassage().length()-1)){ //race ended
-					handleRaceEnded(currT);
+					handleRaceEnded(currT, System.currentTimeMillis()  - startTime);
 				}
 				
 				JTextPane currTT = typistTracks[i];
@@ -107,7 +110,14 @@ public class RaceWindow
 		++race_ticks;
 	}
 	
-	private void handleRaceEnded(Typist winner){
+	private int countWords(String a){
+		String trim = a.trim();
+		if (trim.isEmpty())
+			return 0;
+		return trim.split("\\s+").length; // separate string around spaces
+	}
+	
+	private void handleRaceEnded(Typist winner, long msecs){
 			
 			raceSched.stop();
 			
@@ -122,15 +132,18 @@ public class RaceWindow
 			resultsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 
-			String resultFormatString = "%s: WPM %d REALACC%% %f(%+f) BRNS %d"; 
 			
 			JLabel winf = new JLabel("Winner: " + winner.getName());
 			resultsPanel.add(winf);
 
 
+			String resultFormatString = "%s: WPM %d REALACC%% %.2f(%+.2f) BRNS %d"; 
+			
 			Typist[] racers = tr.getTypists();
 			for(Typist i : racers){
-				resultsPanel.add(new JLabel(String.format(resultFormatString, i.getName(), 0, 0.0, 0.0, 0)));
+				double wordsTyped = ((double)countWords(tr.getPassage())) * ((double)i.getProgress() / (double)tr.getPassage().length());
+				long wpm = Math.round(wordsTyped / ((double)msecs / 1000/ 60));
+				resultsPanel.add(new JLabel(String.format(resultFormatString, i.getName(), wpm, i.getMeasuredAccuracy(), i.getMeasuredAccuracy()- i.getAccuracy(), 0)));
 			}
 			
 
