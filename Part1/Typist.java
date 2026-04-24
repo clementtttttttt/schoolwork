@@ -30,6 +30,7 @@ public class Typist
     double accuracy;
     int correctAttempts;
     int totalAttempts;
+    int totalBurnouts;
     
     Color progressColor;
     
@@ -56,6 +57,8 @@ public class Typist
         justMistyped = false;
         buffs = new TypistBuffs();
         progressColor = Color.blue;
+        
+        totalBurnouts = 0;
     }
 
     // Methods of class Typist
@@ -90,6 +93,7 @@ public class Typist
     {
         if (!isBurntOut)
         {
+			++totalBurnouts;
             burnOutTurnsRemaining = turns;
             isBurntOut = true;
             justMistyped = false;
@@ -187,6 +191,16 @@ public class Typist
     }
 
     /**
+     * Returns the total number of burnouts so far
+     *
+     * @return total burnOuts
+     */
+    public int getTotalBurnouts()
+    {
+        return totalBurnouts;
+    }
+
+    /**
      * Returns the measured accuracy of the typist during the race.
      * Measured accuracy is calculated as correct attempts divided by total attempts.
      * Returns 0.0 if no attempts have been made.
@@ -214,7 +228,10 @@ public class Typist
         correctAttempts = 0;
         totalAttempts = 0;
         justMistyped = false;
-    }
+    
+		totalBurnouts = 0;
+
+	}
 
     /**
      * Returns true if this typist is currently burnt out, false otherwise.

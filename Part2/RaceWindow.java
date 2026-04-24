@@ -143,7 +143,7 @@ public class RaceWindow
 			for(Typist i : racers){
 				double wordsTyped = ((double)countWords(tr.getPassage())) * ((double)i.getProgress() / (double)tr.getPassage().length());
 				long wpm = Math.round(wordsTyped / ((double)msecs / 1000/ 60));
-				resultsPanel.add(new JLabel(String.format(resultFormatString, i.getName(), wpm, i.getMeasuredAccuracy(), i.getMeasuredAccuracy()- i.getAccuracy(), 0)));
+				resultsPanel.add(new JLabel(String.format(resultFormatString, i.getName(), wpm, i.getMeasuredAccuracy(), i.getMeasuredAccuracy()- i.getAccuracy(), i.getTotalBurnouts())));
 			}
 			
 
