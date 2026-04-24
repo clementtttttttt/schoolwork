@@ -118,10 +118,21 @@ public class RaceWindow
 			
 			
 			JPanel resultsPanel = new JPanel();
-			resultsPanel.setLayout(new FlowLayout());
+			resultsPanel.setLayout(new BoxLayout(resultsPanel, BoxLayout.Y_AXIS));
 			resultsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 
+			String resultFormatString = "%s: WPM %d REALACC%% %f(%+f) BRNS %d"; 
+			
+			JLabel winf = new JLabel("Winner: " + winner.getName());
+			resultsPanel.add(winf);
+
+
+			Typist[] racers = tr.getTypists();
+			for(Typist i : racers){
+				resultsPanel.add(new JLabel(String.format(resultFormatString, i.getName(), 0, 0.0, 0.0, 0)));
+			}
+			
 
 			rd.add(resultsPanel);
 
