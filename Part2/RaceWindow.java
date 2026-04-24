@@ -150,6 +150,21 @@ public class RaceWindow
 				resultsPanel.add(new JLabel(String.format(resultFormatString, i.getName(), wpm, i.getMeasuredAccuracy(), i.getMeasuredAccuracy()- i.getAccuracy(), i.getTotalBurnouts())));
 			}
 			
+			resultsPanel.add(Box.createVerticalStrut(15));
+			
+			JPanel buttonPanel = new JPanel();
+			buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+			buttonPanel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+			
+			JButton okButton = new JButton("OK");
+			okButton.setPreferredSize(new Dimension(100, 35));
+			okButton.addActionListener(e -> rd.dispose());
+			
+			buttonPanel.add(Box.createHorizontalGlue());
+			buttonPanel.add(okButton);
+			buttonPanel.add(Box.createHorizontalGlue());
+			
+			resultsPanel.add(buttonPanel);
 
 			rd.add(resultsPanel);
 
