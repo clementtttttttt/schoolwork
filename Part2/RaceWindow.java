@@ -51,10 +51,14 @@ public class RaceWindow
 	long startTime;
 	public void start(){
 		
+		for(Typist i : tr.getTypists()){
+			i.resetToStart();
+		}
+		
 		win.setVisible(true);
 		raceSched = new Timer(RACE_TICK_PERIOD_MS, new ActionListener(){
 			public void actionPerformed(ActionEvent evt){
-				race();
+				raceTick();
 			}
 		
 		});
@@ -67,7 +71,7 @@ public class RaceWindow
 
 	}
 	
-	private void race(){
+	private void raceTick (){
 		Typist[] racers = tr.getTypists();
 		
 		if(race_ticks % 1 == 0){
