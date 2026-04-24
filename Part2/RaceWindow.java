@@ -182,7 +182,7 @@ public class RaceWindow
 			typistTracks[i].setText(tr.getPassage());
 			typistTracks[i].setCaretPosition(0);
 			
-			Font font = new Font(Font.MONOSPACED, Font.PLAIN, 15);
+			Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 15);
 			typistTracks[i].setFont(font);
 			
 			JScrollPane sp = new JScrollPane(typistTracks[i],
