@@ -78,6 +78,14 @@ public class Typist
         return progressColor;
     }
 
+	/**
+	 * Adds history entry 
+	 * @param history entry
+	 */
+	public void addHistoryEntry(RaceHistory in ){
+		history.add(in);
+	}
+
     /**
      * Sets the progress colour of the typist.
      *

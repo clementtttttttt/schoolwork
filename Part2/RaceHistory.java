@@ -43,8 +43,8 @@ public class RaceHistory
 	 */
 	public String toString(Typist in){
 		
-		String resultFormatString = "%s: WPM %d REALACC%% %.2f(%+.2f) BRNS %d"; 
-		return String.format(resultFormatString, in.getName(), wpm, measuredAccuracy, measuredAccuracy - in.getAccuracy(), burnouts);
+		String resultFormatString = "%s: NO.%d WPM %d REALACC%% %.2f(%+.2f) BRNS %d"; 
+		return String.format(resultFormatString, in.getName(), position, wpm, measuredAccuracy, measuredAccuracy - in.getAccuracy(), burnouts);
 		
 	}
 
