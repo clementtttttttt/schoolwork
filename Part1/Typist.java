@@ -12,6 +12,7 @@
 
 import java.lang.Math;
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class Typist
 {
@@ -31,6 +32,8 @@ public class Typist
     int correctAttempts;
     int totalAttempts;
     int totalBurnouts;
+    
+    ArrayList<RaceHistory> history;
     
     Color progressColor;
     
@@ -57,6 +60,8 @@ public class Typist
         justMistyped = false;
         buffs = new TypistBuffs();
         progressColor = Color.blue;
+        
+        history = new ArrayList<RaceHistory>();
         
         totalBurnouts = 0;
     }
