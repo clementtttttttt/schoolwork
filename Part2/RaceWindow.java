@@ -147,13 +147,14 @@ public class RaceWindow
 			resultsPanel.add(winf);
 
 
-			String resultFormatString = "%s: WPM %d REALACC%% %.2f(%+.2f) BRNS %d"; 
 			
 			Typist[] racers = tr.getTypists();
 			for(Typist i : racers){
 				double wordsTyped = ((double)countWords(tr.getPassage())) * ((double)i.getProgress() / (double)tr.getPassage().length());
 				long wpm = Math.round(wordsTyped / ((double)msecs / 1000/ 60));
-				resultsPanel.add(new JLabel(String.format(resultFormatString, i.getName(), wpm, i.getMeasuredAccuracy(), i.getMeasuredAccuracy()- i.getAccuracy(), i.getTotalBurnouts())));
+				
+				RaceHistory r = new RaceHistory(0, (int)wpm, i.getTotalBurnouts(), i.getMeasuredAccuracy());
+				resultsPanel.add(new JLabel(r.toString(i)));
 			}
 			
 			resultsPanel.add(Box.createVerticalStrut(15));

@@ -37,6 +37,18 @@ public class RaceHistory
 	}
 
 	/**
+	 * Returns string that shows results in human readable manner
+	 * 
+	 * @param racer object
+	 */
+	public String toString(Typist in){
+		
+		String resultFormatString = "%s: WPM %d REALACC%% %.2f(%+.2f) BRNS %d"; 
+		return String.format(resultFormatString, in.getName(), wpm, measuredAccuracy, measuredAccuracy - in.getAccuracy(), burnouts);
+		
+	}
+
+	/**
 	 * Returns the finishing position.
 	 * 
 	 * @return the position
