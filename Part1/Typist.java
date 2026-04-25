@@ -140,6 +140,22 @@ public class Typist
         return accuracy;
     }
     
+    
+    /**
+     * Returns best WPM in history
+     * 
+     * @return int represenitng WPM
+     */
+    public int getBestWPM(){
+		int best = 0;
+		for(RaceHistory i : history){
+			if(i.getWPM() > best){
+				best = i.getWPM();
+			}
+		}
+		return best;
+	}	
+    
         /**
      * Returns TypistBuffs object for Typist
      *

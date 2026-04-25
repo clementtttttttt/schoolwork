@@ -9,16 +9,7 @@ public class RaceHistory
 	private int burnouts;
 	private double measuredAccuracy;
 	
-	public static int getBestWPM(RaceHistory[] in){
-		int best = 0;
-		
-		for(RaceHistory i : in){
-			if(i.wpm > best){
-				best = i.wpm;
-			}
-		}
-		return best;
-	}	
+
 
 	/**
 	 * Constructor for RaceHistory.
