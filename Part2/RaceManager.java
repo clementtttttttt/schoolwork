@@ -154,6 +154,13 @@ public class RaceManager
         configureTypistButton.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         configureTypistButton.addActionListener(e -> handleConfigureTypist());
         mPanel.add(configureTypistButton);
+        
+        mPanel.add(Box.createVerticalStrut(8));
+        
+        JButton viewStatisticsButton = new JButton("View Statistics");
+        viewStatisticsButton.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        viewStatisticsButton.addActionListener(e -> handleViewStatistics());
+        mPanel.add(viewStatisticsButton);
 
         return mPanel;
     }
@@ -283,6 +290,16 @@ public class RaceManager
         ConfigureTypistDialog dialog = new ConfigureTypistDialog(win, typistCount, racers);
         dialog.setVisible(true);
         dialog.setModal(true);
+    }
+    
+    /**
+     * Handles the view statistics button action.
+     */
+    private void handleViewStatistics()
+    {
+        int typistCount = (Integer) typistCountSpinner.getValue();
+        TypistStatistics statistics = new TypistStatistics(win, typistCount, racers);
+        statistics.show();
     }
     
     public void startRaceGUI(){
