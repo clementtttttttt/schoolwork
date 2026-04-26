@@ -89,8 +89,9 @@ public class RaceWindow
 				
 				int prog = currT.getProgress();
 				
-				if(prog >= (tr.getPassage().length()-1)){ //race ended
+				if(prog >= (tr.getPassage().length())){ //race ended
 					handleRaceEnded(currT, System.currentTimeMillis()  - startTime);
+					return;
 				}
 				
 				JTextPane currTT = typistTracks[i];
