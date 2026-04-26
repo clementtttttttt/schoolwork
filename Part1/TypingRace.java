@@ -95,7 +95,7 @@ public class TypingRace
     public void addTypist(Typist theTypist, int seatNumber)
     {
 		--seatNumber; //1 to 0 based index
-       if(seatNumber > racers.length){
+       if(seatNumber >= racers.length){
 		   System.out.println("Invalid seat number");
 		   return;
 	   }
