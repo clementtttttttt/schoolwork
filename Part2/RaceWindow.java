@@ -8,8 +8,6 @@ import javax.swing.text.Highlighter;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.BadLocationException;
 
-import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * RaceWindow provides the real juicy typing race bits and graphs.
@@ -153,12 +151,8 @@ public class RaceWindow
 			
 			Typist[] racers = tr.getTypists();
 			
-			Arrays.sort(racers, new Comparator<Typist>() { 
-				public int compare(Typist a, Typist b) {
-					return -Integer.compare(a.getProgress(), b.getProgress()); //sort in reverse order
-				}
-			}); //sort racers array by progress so we can find positions of racers
-			
+			Typist.sortRacersByProgress(racers);
+
 			int pos = 1;
 			for(Typist i : racers){
 				double wordsTyped = ((double)countWords(tr.getPassage())) * ((double)i.getProgress() / (double)tr.getPassage().length());

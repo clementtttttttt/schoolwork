@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.ComponentListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * RaceManager provides a GUI for configuring and managing typing races.
@@ -15,6 +17,8 @@ public class RaceManager
     private JCheckBox caffeineCheckbox;
     private JCheckBox nightShiftCheckbox;
     private JTextArea customPassageCont;
+
+	private JLabel leaderboardLabel;
 
 	private static final int MAX_TYPISTS = 6;
 	
@@ -62,15 +66,75 @@ public class RaceManager
         mainPanel.add(difficultyPanel);
         mainPanel.add(Box.createVerticalStrut(15));
 
+        // Leaderboard section
+        JPanel leaderboardPanel = createLeaderboardPanel();
+        mainPanel.add(leaderboardPanel);
+        
         // Action Buttons
         JPanel buttonPanel = createButtonPanel();
         mainPanel.add(buttonPanel);
         
-
         // Add main panel to frame
         win.add(mainPanel);
         win.pack();
         win.setVisible(true);
+        win.addComponentListener(new ComponentAdapter() {
+
+		   public void componentShown(ComponentEvent e) {
+			  /* code run when window is shown (race ends) */
+				updateLeaderboard(leaderboardLabel);
+		   }
+		});
+        
+        
+    }
+    
+     /**
+     * Updates leaderboard jlabels
+     *
+     * 
+     * @param the JPanel  to put the leaderboard stuff in 
+     */
+    public void updateLeaderboard(JLabel ll){
+        int pos = 0;
+        
+        String ls = new String();
+        
+        Typist.sortRacersByPoints(racers);
+
+        
+        ls += "<html>";
+		for(int i = 0; i < (Integer)typistCountSpinner.getValue(); ++i ){
+			++pos;
+			ls += "No. " + pos + ": " + racers[i].getName() + ": " +  racers[i].getPoints() + " pts. <br>";
+		}
+		ls += "</html>";
+		
+		ll.setText(ls);
+		
+	}
+    
+    
+    /**
+     * Creates leaderboard panel that prints leaderboard stuff
+     *
+     * @return the JPanel containing leaderboard stuff
+     */
+    private JPanel createLeaderboardPanel(){
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(BorderFactory.createTitledBorder("Leaderboards"));
+        panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+
+		
+		
+		
+		leaderboardLabel = new JLabel();
+		updateLeaderboard(leaderboardLabel);
+		
+		panel.add(leaderboardLabel);
+
+        return panel;
     }
 
     /**
@@ -141,6 +205,7 @@ public class RaceManager
         SpinnerModel spinnerModel = new SpinnerNumberModel(3, 2, MAX_TYPISTS, 1);
         typistCountSpinner = new JSpinner(spinnerModel);
         typistCountSpinner.setPreferredSize(new Dimension(50, 25));
+        typistCountSpinner.addChangeListener(e -> updateLeaderboard(leaderboardLabel));
 
         panel.add(label);
         panel.add(Box.createHorizontalStrut(10));

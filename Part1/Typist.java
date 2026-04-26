@@ -13,6 +13,8 @@
 import java.lang.Math;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Arrays;
 
 public class Typist
 {
@@ -104,7 +106,29 @@ public class Typist
 		points += in.getPoints();
 	}
 
+	/**
+	 * sorts array of typists by progress
+	 */
+	public static void sortRacersByProgress(Typist[] racers){
+		Arrays.sort(racers, new Comparator<Typist>() { 
+		public int compare(Typist a, Typist b) {
+			return -Integer.compare(a.getProgress(), b.getProgress()); //sort in reverse order
+		}
+		}); //sort racers array by progress so we can find positions of racers
+	
+	}
 
+	/**
+	 * sorts array of typists by progress
+	 */
+	public static void sortRacersByPoints(Typist[] racers){
+		Arrays.sort(racers, new Comparator<Typist>() { 
+		public int compare(Typist a, Typist b) {
+			return -Integer.compare(a.getPoints(), b.getPoints()); //make sure it sorts in correct order
+		}
+		}); //sort racers array by points so we can find positions of racers
+	
+	}
 
     /**
      * Sets the progress colour of the typist.
@@ -206,6 +230,16 @@ public class Typist
     public String getName()
     {
         return name;
+    }
+
+    /**
+     * Returns the points of the typist.
+     *
+     * @return typist points as int
+     */
+    public int getPoints()
+    {
+        return points;
     }
 
     /**
