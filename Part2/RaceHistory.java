@@ -34,8 +34,8 @@ public class RaceHistory
 	 */
 	public String toString(Typist in){
 		
-		String resultFormatString = "%s: NO.%d WPM %d REALACC%% %.2f(%+.2f) BRNS %d"; 
-		return String.format(resultFormatString, in.getName(), position, wpm, measuredAccuracy, measuredAccuracy - in.getAccuracy(), burnouts);
+		String resultFormatString = "%s: NO.%d WPM %d REALACC%% %.2f(%+.2f) BRNS %d POINTS %d"; 
+		return String.format(resultFormatString, in.getName(), position, wpm, measuredAccuracy, measuredAccuracy - in.getAccuracy(), burnouts, getPoints());
 		
 	}
 
@@ -98,6 +98,17 @@ public class RaceHistory
 	{
 		this.burnouts = burnouts;
 	}
+
+	/**
+	 * Returns the points for a race based on WPM, position, burnout count
+	* @return poitnts for one race
+	*/
+	
+	public int getPoints(){
+		
+		return (int)Math.round (10.0 * (7.0 - position) + ((double)wpm /50.0) - ((double)burnouts / 80.0));
+	}
+
 
 	/**
 	 * Returns the measured accuracy.
