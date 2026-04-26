@@ -173,29 +173,19 @@ public class ConfigureTypistDialog extends JDialog
 	  * without saving data to the Typist object.
 	  */
 	 private void updateAttributeImpacts(){
-		 // Create temporary buffs based on current GUI selections
-		 TypingStyle selectedStyle = (TypingStyle) styleSelector.getSelectedItem();
-		 KeyboardType selectedKeyboard = (KeyboardType) keyboardSelector.getSelectedItem();
-		 boolean hasWS = wristSupportCheckbox.isSelected();
-		 boolean hasED = energyDrinkCheckbox.isSelected();
-		 boolean hasNC = noiseCancellingCheckbox.isSelected();
+
+		 TypistBuffs b = new TypistBuffs((TypingStyle) styleSelector.getSelectedItem(),
+										 (KeyboardType) keyboardSelector.getSelectedItem(),
+										 wristSupportCheckbox.isSelected(),
+										 energyDrinkCheckbox.isSelected(),
+										 noiseCancellingCheckbox.isSelected()
+										 );
 		 
-		 // Calculate accuracy buff
-		 int accuracyBuff = selectedStyle.getAccuracyBuff() + selectedKeyboard.getAccuracyBuff();
-		 if (hasNC) {
-			 ++accuracyBuff;
-		 }
-		 
-		 // Calculate speed buff
-		 int speedBuff = selectedKeyboard.getSpeedBonus();
-		 
-		 // Calculate burnout buff
-		 int burnoutBuff = selectedStyle.getBurnOutBuff() + (hasWS ? 1 : 0);
 		 
 		 // Update the labels
-		 accuracyValueLabel.setText(Integer.toString(accuracyBuff));
-		 speedValueLabel.setText(Integer.toString(speedBuff));
-		 burnoutValueLabel.setText(Integer.toString(burnoutBuff));
+		 accuracyValueLabel.setText(Integer.toString(b.getTotalAccuracyBuff()));
+		 speedValueLabel.setText(Integer.toString(b.getTotalSpeedBuff()));
+		 burnoutValueLabel.setText(Integer.toString(b.getTotalBurnOutBuff()));
 	 }
 
     /**

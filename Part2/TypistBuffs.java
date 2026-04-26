@@ -9,6 +9,14 @@ class TypistBuffs{
 		hasWS = hasED = hasNC = false;
 	}
 	
+	TypistBuffs(TypingStyle ts,KeyboardType  kt,boolean  a,boolean b,boolean c){
+		this.ts = ts;
+		this.kt = kt;
+		hasWS = a;
+		hasED = b;
+		hasNC = c;
+	}
+	
 	public int getTotalAccuracyBuff(){
 		int ret = ts.getAccuracyBuff() + kt.getAccuracyBuff();
 		if(hasNC){
