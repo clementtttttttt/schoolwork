@@ -86,6 +86,8 @@ public class Typist
 		history.add(in);
 	}
 
+
+
     /**
      * Sets the progress colour of the typist.
      *

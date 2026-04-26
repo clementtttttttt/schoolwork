@@ -24,6 +24,7 @@ public class TypingRace
     private static final int    SLIDE_BACK_AMOUNT   = 2;
     private static final int    BURNOUT_DURATION     = 3;
     private static final double 	NIGHTSHIFT_ACC_DEBUFF = 0.1;
+	private static final double ED_ACC_BUFF = 0.05;
 
 	private static boolean autoCorrect, caffeine, nightShift;
 
@@ -188,6 +189,15 @@ public class TypingRace
 		double accuracy = theTypist.getAccuracy() + theTypist.getTypistBuffs().getTotalAccuracyBuff() * 0.1;
 		if(nightShift){
 			accuracy -= NIGHTSHIFT_ACC_DEBUFF;
+		}
+		
+		if(theTypist.getTypistBuffs().isED()){
+				if(theTypist.getProgress() > (passage.length() >> 1)){
+					accuracy -= ED_ACC_BUFF;
+				}
+				else{
+					accuracy += ED_ACC_BUFF;
+				}
 		}
 		
 
