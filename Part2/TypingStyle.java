@@ -24,7 +24,7 @@ public enum TypingStyle
         accuracyPenalty = ap;
     }
     
-    int getAccuracyPenalty(){
+    int getAccuracyBuff(){
 		return accuracyPenalty;
 	}
 	

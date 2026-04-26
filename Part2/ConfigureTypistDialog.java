@@ -181,7 +181,7 @@ public class ConfigureTypistDialog extends JDialog
 		 boolean hasNC = noiseCancellingCheckbox.isSelected();
 		 
 		 // Calculate accuracy buff
-		 int accuracyBuff = selectedStyle.getAccuracyPenalty() + selectedKeyboard.getAccuracyPenalty();
+		 int accuracyBuff = selectedStyle.getAccuracyBuff() + selectedKeyboard.getAccuracyBuff();
 		 if (hasNC) {
 			 ++accuracyBuff;
 		 }

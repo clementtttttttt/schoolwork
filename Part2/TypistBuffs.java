@@ -10,7 +10,7 @@ class TypistBuffs{
 	}
 	
 	public int getTotalAccuracyBuff(){
-		int ret = ts.getAccuracyPenalty() + kt.getAccuracyPenalty();
+		int ret = ts.getAccuracyBuff() + kt.getAccuracyBuff();
 		if(hasNC){
 			++ret; //NC headphones reduce mistype chance
 		}

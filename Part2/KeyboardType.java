@@ -25,7 +25,7 @@ public enum KeyboardType
 		accuracyPenalty = accPenalty;
     }
 
-    int getAccuracyPenalty(){
+    int getAccuracyBuff(){
 		return accuracyPenalty;
 	}
 	
