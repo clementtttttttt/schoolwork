@@ -27,6 +27,8 @@ public class TypingRace
 
 	private static boolean autoCorrect, caffeine, nightShift;
 
+	private int totalTurns;
+
     /**
      * Constructor for objects of class TypingRace.
      * Sets up the race with a passage of the given length.
@@ -40,6 +42,7 @@ public class TypingRace
         this.passage = passage;
         racers = new Typist[no];
         autoCorrect = caffeine = nightShift = false;
+        totalTurns = 0;
     }
     
     /**
@@ -109,6 +112,7 @@ public class TypingRace
      */
     public void startRace()
     {
+		totalTurns = 0;
         for(Typist i : racers)
         {
 			if(i == null){
@@ -185,6 +189,7 @@ public class TypingRace
 		if(nightShift){
 			accuracy -= NIGHTSHIFT_ACC_DEBUFF;
 		}
+		
 
 		accuracy = Math.max(accuracy, 0.1);
         // Attempt to type a character
@@ -208,12 +213,20 @@ public class TypingRace
             theTypist.slideBack(slideBackAmount);
         }
 
-		double newAcc =  (0.3 * theTypist.getAccuracy() * theTypist.getAccuracy() * theTypist.getAccuracy() + theTypist.getTypistBuffs().getTotalBurnOutBuff() * -0.1);
+		double newBrn =  (0.3 * theTypist.getAccuracy() * theTypist.getAccuracy() * theTypist.getAccuracy() + theTypist.getTypistBuffs().getTotalBurnOutBuff() * -0.1);
 
+		if(caffeine){
+			if(totalTurns > 10){
+					newBrn += 0.1;
+			}	
+			
+		}
+		
+		++totalTurns;
 
         // Burnout check — pushing too hard increases burnout risk
         // (probability scales with accuracy cubed, limited to 0.3
-        if (Math.random() < newAcc)
+        if (Math.random() < newBrn)
         {
             theTypist.burnOut(BURNOUT_DURATION);
         }
