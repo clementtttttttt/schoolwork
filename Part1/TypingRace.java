@@ -26,7 +26,7 @@ public class TypingRace
     private static final double 	NIGHTSHIFT_ACC_DEBUFF = 0.1;
 	private static final double ED_ACC_BUFF = 0.05;
 
-	private static boolean autoCorrect, caffeine, nightShift;
+	private boolean autoCorrect, caffeine, nightShift;
 
 	private int totalTurns;
 
