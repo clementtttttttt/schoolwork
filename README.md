@@ -44,7 +44,7 @@ run startRaceGUI somewhere along your code.
 
 ## Dependencies
 
-- Java Development Kit (JDK) 11 or higher
+- Java Development Kit (JDK) 21 or higher (Math.clamp used)
 - No external libraries required for Part 1 & Part 2
 - Part 2 only requires Java Swing
 
