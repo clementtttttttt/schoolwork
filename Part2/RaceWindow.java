@@ -166,7 +166,7 @@ public class RaceWindow
 				
 				RaceHistory r = new RaceHistory(pos, (int)wpm, i.getTotalBurnouts(), i.getMeasuredAccuracy());
 				resultsPanel.add(new JLabel(r.toString(i)));
-				i.addHistoryEntry(r);
+				i.addHistoryEntryAndAddPoints(r);
 				
 				++pos;
 			}

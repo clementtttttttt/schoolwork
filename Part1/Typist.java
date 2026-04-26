@@ -44,7 +44,7 @@ public class Typist
     int correctAttempts;
     int totalAttempts;
     int totalBurnouts;
-    int money;
+    int money, points;
     
     ArrayList<RaceHistory> history;
     
@@ -79,6 +79,8 @@ public class Typist
         totalBurnouts = 0;
         
         money = 0;
+        
+        points = 0;
     }
 
     // Methods of class Typist
@@ -94,11 +96,12 @@ public class Typist
     }
 
 	/**
-	 * Adds history entry 
+	 * Adds history entry and add points 
 	 * @param history entry
 	 */
-	public void addHistoryEntry(RaceHistory in ){
+	public void addHistoryEntryAndAddPoints(RaceHistory in ){
 		history.add(in);
+		points += in.getPoints();
 	}
 
 

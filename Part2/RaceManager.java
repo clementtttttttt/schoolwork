@@ -216,7 +216,7 @@ public class RaceManager
 
         startButton.setPreferredSize(new Dimension(120, 35));
         cancelButton.setPreferredSize(new Dimension(120, 35));
-        cancelButton.setPreferredSize(new Dimension(120, 35));
+        saveButton.setPreferredSize(new Dimension(120, 35));
 
         panel.add(startButton);
         panel.add(Box.createHorizontalStrut(10));
