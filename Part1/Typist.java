@@ -16,6 +16,18 @@ import java.util.ArrayList;
 
 public class Typist
 {
+	
+	public enum Sponsors{
+		
+			EAGLECOMPUTERS("EagleComputers"), MACROHARD("MacroHardware"), PROPRIETARYAI("ProprietaryAI"), PEAR("PearPc"), HP("HingeProblems Corp"), MSI("MultipleSeriousIssues inc");
+			String displayName;
+
+			
+			Sponsors(String dn){
+				displayName = dn;
+			}
+	};
+	
     // Fields of class Typist
     // Hint: you will need six fields. Think carefully about their types.
     // One of them tracks how far along the passage the typist has reached.
@@ -32,6 +44,7 @@ public class Typist
     int correctAttempts;
     int totalAttempts;
     int totalBurnouts;
+    int money;
     
     ArrayList<RaceHistory> history;
     
@@ -64,6 +77,8 @@ public class Typist
         history = new ArrayList<RaceHistory>();
         
         totalBurnouts = 0;
+        
+        money = 0;
     }
 
     // Methods of class Typist
