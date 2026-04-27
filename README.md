@@ -28,7 +28,7 @@ run compilePart1.sh in the root folder
 
 OR
 
-rewrite main() to call startRace() manually.
+create a TypingRace object, add the typists with the methods and call startRace() manually.
 
 ## Part 2 — GUI Simulation
 
@@ -40,7 +40,7 @@ run compilePart2.sh in the root folder
 
 OR
 
-run startRaceGUI somewhere along your code.
+create a RaceManager object, then run startRaceGUI somewhere along your code.
 
 ## Dependencies
 
