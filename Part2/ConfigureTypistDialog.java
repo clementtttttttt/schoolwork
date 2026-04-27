@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 /**
  * ConfigureTypistDialog provides a GUI for configuring individual typist settings.
- * Users can select typing style, keyboard type, avatar, progress colour,
+ * Users can select typing style, keyboard type, sponsor, avatar, progress colour,
  * accessories, and view attribute impacts.
  */
 public class ConfigureTypistDialog extends JDialog
@@ -18,6 +18,7 @@ public class ConfigureTypistDialog extends JDialog
 	JTextField avatarField;
 	JComboBox<TypingStyle> styleSelector;
 	JComboBox<KeyboardType> keyboardSelector;
+	JComboBox<Typist.Sponsors> sponsorSelector;
 	JButton colourButton;
 	JCheckBox wristSupportCheckbox;
     JCheckBox energyDrinkCheckbox;
@@ -67,6 +68,11 @@ public class ConfigureTypistDialog extends JDialog
         // Keyboard Type Selection Section
         JPanel keyboardPanel = createDialogKeyboardPanel();
         dialogPanel.add(keyboardPanel);
+        dialogPanel.add(Box.createVerticalStrut(15));
+
+        // Sponsor Selection Section
+        JPanel sponsorPanel = createDialogSponsorPanel();
+        dialogPanel.add(sponsorPanel);
         dialogPanel.add(Box.createVerticalStrut(15));
 
         // Avatar Section
@@ -135,6 +141,7 @@ public class ConfigureTypistDialog extends JDialog
 		avatarField.setText(Character.toString(curr.getSymbol()));
 		styleSelector.setSelectedItem(tb.getTypingStyle());
 		keyboardSelector.setSelectedItem(tb.getKeyboardType());
+		sponsorSelector.setSelectedItem(tb.getSponsor());
 		colourButton.setBackground(curr.getProgressColour());
 	 
 	 
@@ -161,6 +168,7 @@ public class ConfigureTypistDialog extends JDialog
 		
 		tb.setTypingStyle((TypingStyle) styleSelector.getSelectedItem());
 		tb.setKeyboardType((KeyboardType) keyboardSelector.getSelectedItem());
+		tb.setSponsor((Typist.Sponsors) sponsorSelector.getSelectedItem());
 		curr.setProgressColour(colourButton.getBackground());
 		
 		tb.setWS(wristSupportCheckbox.isSelected());
@@ -296,6 +304,33 @@ public class ConfigureTypistDialog extends JDialog
           panel.add(keyboardLabel);
           panel.add(Box.createHorizontalStrut(10));
           panel.add(keyboardSelector);
+          panel.add(Box.createHorizontalGlue());
+
+          return panel;
+      }
+
+    /**
+     * Creates the sponsor selection panel for the configuration dialog.
+     *
+     * @return a JPanel containing the sponsor selector
+     */
+      private JPanel createDialogSponsorPanel()
+      {
+          JPanel panel = new JPanel();
+          panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+          panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+          panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+
+          JLabel sponsorLabel = new JLabel("Sponsor:");
+          sponsorLabel.setPreferredSize(new Dimension(120, 25));
+
+          sponsorSelector = new JComboBox<>(Typist.Sponsors.values());
+          sponsorSelector.setPreferredSize(new Dimension(200, 25));
+          sponsorSelector.setMaximumSize(new Dimension(200, 25));
+
+          panel.add(sponsorLabel);
+          panel.add(Box.createHorizontalStrut(10));
+          panel.add(sponsorSelector);
           panel.add(Box.createHorizontalGlue());
 
           return panel;

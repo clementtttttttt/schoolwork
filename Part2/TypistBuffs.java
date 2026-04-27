@@ -1,11 +1,13 @@
 class TypistBuffs{
 	TypingStyle ts;
 	KeyboardType kt;
+	Typist.Sponsors sponsor;
 	boolean hasWS, hasED, hasNC;
 	
 	TypistBuffs(){
 		ts = TypingStyle.HUNT_AND_PECK;
 		kt = KeyboardType.MEMBRANE;
+		sponsor = Typist.Sponsors.NONE;
 		hasWS = hasED = hasNC = false;
 	}
 	
@@ -69,5 +71,13 @@ class TypistBuffs{
 	
 	public void setNC(boolean value){
 		hasNC = value;
+	}
+
+	public Typist.Sponsors getSponsor(){
+		return sponsor;
+	}
+
+	public void setSponsor(Typist.Sponsors value){
+		sponsor = value;
 	}
 };

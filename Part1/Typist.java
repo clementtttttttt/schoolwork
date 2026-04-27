@@ -21,12 +21,19 @@ public class Typist
 	
 	public enum Sponsors{
 		
-			EAGLECOMPUTERS("EagleComputers"), MACROHARD("MacroHardware"), PROPRIETARYAI("ProprietaryAI"), PEAR("PearPc"), HP("HingeProblems Corp"), MSI("MultipleSeriousIssues inc");
+			NONE("None"), EAGLECOMPUTERS("EagleComputers"), MACROHARD("MacroHardware"), PROPRIETARYAI("ProprietaryAI"), PEAR("PearPc"), HP("HingeProblems Corp"), MSI("MultipleSeriousIssues inc");
 			String displayName;
 
 			
 			Sponsors(String dn){
 				displayName = dn;
+			}
+			
+			@Override 
+			public String toString(){
+				
+					return this.displayName;
+				
 			}
 	};
 	
@@ -108,6 +115,21 @@ public class Typist
 
 	/**
 	 * sorts array of typists by progress
+	 * @param racers array to be sorted.
+	 */
+	public static void sortRacersByMoney(Typist[] racers){
+		Arrays.sort(racers, new Comparator<Typist>() { 
+		public int compare(Typist a, Typist b) {
+			return -Integer.compare(a.getMoney(), b.getMoney()); //sort in reverse order
+		}
+		}); //sort racers array by progress so we can find positions of racers
+	
+	}
+
+
+	/**
+	 * sorts array of typists by progress
+	 * @param racer array to be sorted
 	 */
 	public static void sortRacersByProgress(Typist[] racers){
 		Arrays.sort(racers, new Comparator<Typist>() { 
@@ -117,6 +139,7 @@ public class Typist
 		}); //sort racers array by progress so we can find positions of racers
 	
 	}
+
 
 	/**
 	 * sorts array of typists by progress
@@ -182,6 +205,16 @@ public class Typist
     public double getAccuracy()
     {
         return accuracy;
+    }
+    
+    /**
+     * Returns the typist's money amount
+     *
+     * @return moneys as integer
+     */
+    public int getMoney()
+    {
+        return money;
     }
     
     

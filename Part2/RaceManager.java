@@ -19,6 +19,7 @@ public class RaceManager
     private JTextArea customPassageCont;
 
 	private JLabel leaderboardLabel;
+	private JLabel fleaderboardLabel;
 
 	private static final int MAX_TYPISTS = 6;
 	
@@ -82,7 +83,7 @@ public class RaceManager
 
 		   public void componentShown(ComponentEvent e) {
 			  /* code run when window is shown (race ends) */
-				updateLeaderboard(leaderboardLabel);
+				updateLeaderboard(leaderboardLabel, fleaderboardLabel);
 		   }
 		});
         
@@ -95,15 +96,29 @@ public class RaceManager
      * 
      * @param the JPanel  to put the leaderboard stuff in 
      */
-    public void updateLeaderboard(JLabel ll){
+    public void updateLeaderboard(JLabel ll, JLabel fl){
         int pos = 0;
         
         String ls = new String();
+
+        Typist.sortRacersByMoney(racers);
+
         
+        ls += "<html>"; //this allows multiline with html tags which is a lot less annoying
+		for(int i = 0; i < (Integer)typistCountSpinner.getValue(); ++i ){
+			++pos;
+			ls += "No. " + pos + ": " + racers[i].getName() + ": " +  racers[i].getMoney() + " moneys. <br>";
+		}
+		ls += "</html>";
+		
+        fl.setText(ls);
+
+
+        pos = 0;
         Typist.sortRacersByPoints(racers);
 
         
-        ls += "<html>";
+        ls = "<html>";
 		for(int i = 0; i < (Integer)typistCountSpinner.getValue(); ++i ){
 			++pos;
 			ls += "No. " + pos + ": " + racers[i].getName() + ": " +  racers[i].getPoints() + " pts. <br>";
@@ -122,7 +137,7 @@ public class RaceManager
      */
     private JPanel createLeaderboardPanel(){
         JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setBorder(BorderFactory.createTitledBorder("Leaderboards"));
         panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
@@ -130,9 +145,11 @@ public class RaceManager
 		
 		
 		leaderboardLabel = new JLabel();
-		updateLeaderboard(leaderboardLabel);
+		fleaderboardLabel = new JLabel();
+		updateLeaderboard(leaderboardLabel, fleaderboardLabel);
 		
 		panel.add(leaderboardLabel);
+		panel.add(fleaderboardLabel);
 
         return panel;
     }
@@ -205,7 +222,7 @@ public class RaceManager
         SpinnerModel spinnerModel = new SpinnerNumberModel(3, 2, MAX_TYPISTS, 1);
         typistCountSpinner = new JSpinner(spinnerModel);
         typistCountSpinner.setPreferredSize(new Dimension(50, 25));
-        typistCountSpinner.addChangeListener(e -> updateLeaderboard(leaderboardLabel));
+        typistCountSpinner.addChangeListener(e -> updateLeaderboard(leaderboardLabel, fleaderboardLabel));
 
         panel.add(label);
         panel.add(Box.createHorizontalStrut(10));
