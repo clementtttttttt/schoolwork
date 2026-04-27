@@ -10,7 +10,7 @@ public class TypistStatistics
     private Typist[] racers;
     private JSpinner typistSelector;
     private JLabel bestWPMLabel;
-
+	private JLabel historyL;
     /**
      * Constructor for TypistStatistics.
      * Creates a dialog with a number selector and best WPM display.
@@ -44,7 +44,7 @@ public class TypistStatistics
         SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, typistCount, 1);
         typistSelector = new JSpinner(spinnerModel);
         typistSelector.setPreferredSize(new java.awt.Dimension(50, 25));
-        typistSelector.addChangeListener(e -> updateBestWPM());
+        typistSelector.addChangeListener(e -> update());
 
 
 
@@ -86,20 +86,30 @@ public class TypistStatistics
         buttonPanel.add(Box.createHorizontalGlue());
         buttonPanel.add(closeButton);
 
-        mainPanel.add(buttonPanel);
+        //add jlabel that displays race history
+        
+        historyL = new JLabel();
+        mainPanel.add(historyL);
 
+        mainPanel.add(buttonPanel);
+        
+        
+
+        
         // Add main panel to dialog
         dialog.add(mainPanel);
+        
+
         dialog.pack();
 
         // Initialize display with first typist
-        updateBestWPM();
+        update();
     }
 
     /**
-     * Updates the best WPM label based on the currently selected typist.
+     * Updates all labels based on the currently selected typist.
      */
-    private void updateBestWPM()
+    private void update()
     {
         int selectedTypistNumber = (Integer) typistSelector.getValue();
         int typistIndex = selectedTypistNumber - 1;
@@ -109,6 +119,17 @@ public class TypistStatistics
             int bestWPM = racers[typistIndex].getBestWPM();
             bestWPMLabel.setText(Integer.toString(bestWPM));
         }
+        
+        String s = "<html>Race history: <br>";
+        for(RaceHistory r : racers[typistIndex].getHistory()){
+			s += r.toString(racers[typistIndex]);
+			s += " <br> ";
+		}
+		s += "</html>";
+		
+		historyL.setText(s);
+		
+		dialog.pack();
     }
 
     /**

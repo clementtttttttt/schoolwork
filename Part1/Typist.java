@@ -145,6 +145,14 @@ public class Typist
 		points += in.getPoints();
 		money += in.getMoneys(this);
 	}
+	
+	/**returns race history as array
+	 * 
+	 * @return array of racehistories representing race history
+	 */
+	public RaceHistory[] getHistory(){
+		return history.toArray(new RaceHistory[0]);
+	}
 
 	/**
 	 * sorts array of typists by progress
