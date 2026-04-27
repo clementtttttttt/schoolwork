@@ -160,7 +160,7 @@ public class RaceWindow
 				
 				RaceHistory r = new RaceHistory(pos, (int)wpm, i.getTotalBurnouts(), i.getMeasuredAccuracy());
 				resultsPanel.add(new JLabel(r.toString(i)));
-				i.addHistoryEntryAndAddPoints(r);
+				i.addHistoryEntryAndAddPointsAndMoney(r);
 				
 				++pos;
 			}

@@ -21,19 +21,51 @@ public class Typist
 	
 	public enum Sponsors{
 		
-			NONE("None"), EAGLECOMPUTERS("EagleComputers"), MACROHARD("MacroHardware"), PROPRIETARYAI("ProprietaryAI"), PEAR("PearPc"), HP("HingeProblems Corp"), MSI("MultipleSeriousIssues inc");
+
+			NONE("None", "", 0,  (p,t) -> {return false;}), 
+			EAGLECOMPUTERS("EagleComputers", "50 moneys if first place", 50, (p, t) -> {return p == 1;}), 
+			MACROHARD("MacroHardware","200 moneys if first place using touch screen", 200, (p,t) -> {return (p == 1) && t.getTypistBuffs().getKeyboardType() == KeyboardType.TOUCHSCREEN;}), 
+			PROPRIETARYAI("ProprietaryAI","200 moneys if better than second place, using voice input", 200, (p,t) -> {return (p <= 2) && t.getTypistBuffs().getTypingStyle() == TypingStyle.VOICE_TO_TEXT;}), 
+			PEAR("PearPc","400 moneys if third place with mechanical keyboard", 50, (p,t) -> {return p == 3 && t.getTypistBuffs().getKeyboardType() == KeyboardType.MECHANICAL;}), 
+			HP("HingeProblems Corp","50 moneys if second place", 50, (p,t) -> {return p == 2;}), 
+			MSI("MultipleSeriousIssues inc","300 money if first place using hunt and peck", 300, (p,t) -> {return p == 3 && t.getTypistBuffs().getTypingStyle() == TypingStyle.HUNT_AND_PECK;});
+			
+			
 			String displayName;
+			String displayDeal;
+			int b;
 
 			
-			Sponsors(String dn){
+			public interface CriteriaMetIf{
+				boolean isMet(int pos, Typist t);
+			}
+			
+			CriteriaMetIf f;
+			
+			Sponsors(String dn, String deal, int bonus, CriteriaMetIf func){
 				displayName = dn;
+				displayDeal = deal;
+				f = func;
+				b = bonus;
+			}
+			
+			public int getBonus(){
+				return b;
+			}
+			
+			public boolean isMet(int p, Typist t){
+				return f.isMet(p, t);
 			}
 			
 			@Override 
 			public String toString(){
 				
-					return this.displayName;
+				return this.displayName;
 				
+			}
+			
+			public String getDisplayDeal(){
+				return displayDeal;
 			}
 	};
 	
@@ -108,9 +140,10 @@ public class Typist
 	 * Adds history entry and add points 
 	 * @param history entry
 	 */
-	public void addHistoryEntryAndAddPoints(RaceHistory in ){
+	public void addHistoryEntryAndAddPointsAndMoney(RaceHistory in ){
 		history.add(in);
 		points += in.getPoints();
+		money += in.getMoneys(this);
 	}
 
 	/**

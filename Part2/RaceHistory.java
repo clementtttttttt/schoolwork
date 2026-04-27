@@ -34,9 +34,22 @@ public class RaceHistory
 	 */
 	public String toString(Typist in){
 		
-		String resultFormatString = "%s: NO.%d WPM %d REALACC%% %.2f(%+.2f) BRNS %d POINTS %d"; 
-		return String.format(resultFormatString, in.getName(), position, wpm, measuredAccuracy, measuredAccuracy - in.getAccuracy(), burnouts, getPoints());
+		String resultFormatString = "%s: NO.%d WPM %d REALACC%% %.2f(%+.2f) BRNS %d POINTS %d MONEYS %d"; 
+		return String.format(resultFormatString, in.getName(), position, wpm, measuredAccuracy, measuredAccuracy - in.getAccuracy(), burnouts, getPoints(), getMoneys(in));
 		
+	}
+	
+	/**
+	 * calculates and returns earnings of typist
+	 * 
+	 * @return integer moneys in integer
+	 */
+	public int getMoneys(Typist i){
+		int ret =  (int)Math.round (10.0 * (7.0 - position) + ((double)wpm /40.0) - ((double)burnouts / 50.0) + measuredAccuracy * 50.0) ;
+		if(i.getTypistBuffs().getSponsor().isMet(position, i)){
+			ret += i.getTypistBuffs().getSponsor().getBonus();
+		}
+		return ret;
 	}
 
 	/**

@@ -174,6 +174,7 @@ public class ConfigureTypistDialog extends JDialog
 		tb.setWS(wristSupportCheckbox.isSelected());
 		tb.setED(energyDrinkCheckbox.isSelected());
 		tb.setNC(noiseCancellingCheckbox.isSelected());
+		
 	 }
 	 
 	 /**
@@ -316,6 +317,14 @@ public class ConfigureTypistDialog extends JDialog
      */
       private JPanel createDialogSponsorPanel()
       {
+		  JLabel sponsorDealText = new JLabel();
+		  
+		  JPanel panel2 = new JPanel();
+		  panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+          panel2.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+          panel2.setMaximumSize(new Dimension(Integer.MAX_VALUE, 25));
+	  
+		  
           JPanel panel = new JPanel();
           panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
           panel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
@@ -327,13 +336,29 @@ public class ConfigureTypistDialog extends JDialog
           sponsorSelector = new JComboBox<>(Typist.Sponsors.values());
           sponsorSelector.setPreferredSize(new Dimension(200, 25));
           sponsorSelector.setMaximumSize(new Dimension(200, 25));
+		  sponsorSelector.addItemListener(e -> 
+		
+			{
+				
+				sponsorDealText.setText(((Typist.Sponsors)sponsorSelector.getSelectedItem()).getDisplayDeal());
+				
+				});
+			  
+		
 
           panel.add(sponsorLabel);
           panel.add(Box.createHorizontalStrut(10));
           panel.add(sponsorSelector);
           panel.add(Box.createHorizontalGlue());
+          
+          
+          panel2.add(panel);
+          
+          panel2.add(sponsorDealText);
 
-          return panel;
+
+
+          return panel2;
       }
 
     /**
